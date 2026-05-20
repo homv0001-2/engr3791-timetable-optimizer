@@ -9,7 +9,6 @@ import java.nio.file.Path;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class CsvParser {
             if (TextUtil.isBlank(line)) {
                 continue;
             }
-            List<String> values = splitCsvLine(line);
+            List<String> values = normaliseColumns(splitCsvLine(line));
             if (values.size() != EXPECTED_COLUMNS) {
                 throw new CsvFormatException("Row " + (i + 1) + " has " + values.size()
                         + " columns. Expected " + EXPECTED_COLUMNS + ".");
@@ -139,13 +138,7 @@ public class CsvParser {
             if (cleaned.matches(".*\\d{4}$")) {
                 return LocalDate.parse(cleaned, SHORT_DATE);
             }
-            String[] parts = cleaned.split(" ");
-            if (parts.length != 2) {
-                throw new DateTimeParseException("Invalid short date", cleaned, 0);
-            }
-            int day = Integer.parseInt(parts[0]);
-            Month month = Month.valueOf(parts[1].substring(0, 3).toUpperCase(Locale.ENGLISH));
-            return LocalDate.of(DEFAULT_YEAR, month, day);
+            return LocalDate.parse(cleaned + " " + DEFAULT_YEAR, SHORT_DATE);
         } catch (RuntimeException e) {
             throw new CsvFormatException("Invalid date: " + value);
         }
@@ -175,6 +168,19 @@ public class CsvParser {
             return new String[]{cleaned, ""};
         }
         return new String[]{cleaned.substring(0, comma).trim(), cleaned.substring(comma + 1).trim()};
+    }
+
+    private List<String> normaliseColumns(List<String> values) {
+        if (values.size() <= EXPECTED_COLUMNS) {
+            return values;
+        }
+
+        // The assignment data stores location as "Building, room". Some CSV exports quote this field,
+        // while simple hand-written examples may leave it unquoted. If extra columns appear, keep the
+        // first seven fields as-is and join the remaining fields back into the Location value.
+        List<String> normalised = new ArrayList<>(values.subList(0, EXPECTED_COLUMNS - 1));
+        normalised.add(String.join(", ", values.subList(EXPECTED_COLUMNS - 1, values.size())));
+        return normalised;
     }
 
     private List<String> splitCsvLine(String line) {
