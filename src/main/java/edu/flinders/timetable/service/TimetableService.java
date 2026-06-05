@@ -164,7 +164,8 @@ public class TimetableService {
     private Map<String, List<ClassGroup>> buildCandidatesByChoice(List<ClassRecord> records) {
         Map<String, ClassGroup> groups = new LinkedHashMap<>();
         for (ClassRecord record : records.stream().sorted(recordComparator()).toList()) {
-            groups.computeIfAbsent(record.groupKey(), ClassGroup::new).addRecord(record);
+            String name = "";
+            groups.computeIfAbsent(record.groupKey(), key -> new ClassGroup(key, name)).addRecord(record);
         }
         Map<String, List<ClassGroup>> candidates = new LinkedHashMap<>();
         for (ClassGroup group : groups.values()) {

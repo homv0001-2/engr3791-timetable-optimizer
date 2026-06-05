@@ -126,4 +126,86 @@ class ClassRecordTest {
                 () -> assertTrue(display.contains("Tonsley T1"))
         );
     }
+
+    @Test
+    @Tag("hone0038")
+    @Tag("Additional")
+    @DisplayName("CR4.06 - Getters setters choice key equals hashcode and tostring")
+    void cr406RemainingCoverage() {
+
+        ClassRecord record = record(
+                "Workshop",
+                1,
+                LocalDate.of(2026, 7, 27),
+                DayOfWeek.MONDAY,
+                LocalTime.of(9, 0),
+                LocalTime.of(10, 0),
+                "Building A",
+                "Room A"
+        );
+
+        // setters
+        record.setTopicCode("COMP2701");
+        record.setTopicName("Software Engineering");
+        record.setAttendanceMode("Online");
+        record.setCampus("City");
+        record.setSemester(1);
+        record.setAvailabilityNumber(3);
+        record.setClassFormat("Tutorial");
+        record.setClassInstance(4);
+        record.setFirstClassDate(LocalDate.of(2026, 8, 1));
+        record.setLastClassDate(LocalDate.of(2026, 10, 1));
+        record.setDay(DayOfWeek.FRIDAY);
+        record.setStartTime(LocalTime.of(13, 0));
+        record.setEndTime(LocalTime.of(14, 0));
+        record.setBuilding("B1");
+        record.setRoom("2.01");
+
+        // getters
+        assertAll(
+                () -> assertEquals("COMP2701", record.getTopicCode()),
+                () -> assertEquals("Software Engineering", record.getTopicName()),
+                () -> assertEquals("Online", record.getAttendanceMode()),
+                () -> assertEquals("City", record.getCampus()),
+                () -> assertEquals(1, record.getSemester()),
+                () -> assertEquals(3, record.getAvailabilityNumber()),
+                () -> assertEquals("Tutorial", record.getClassFormat()),
+                () -> assertEquals(4, record.getClassInstance()),
+                () -> assertEquals(LocalDate.of(2026, 8, 1), record.getFirstClassDate()),
+                () -> assertEquals(LocalDate.of(2026, 10, 1), record.getLastClassDate()),
+                () -> assertEquals(DayOfWeek.FRIDAY, record.getDay()),
+                () -> assertEquals(LocalTime.of(13, 0), record.getStartTime()),
+                () -> assertEquals(LocalTime.of(14, 0), record.getEndTime()),
+                () -> assertEquals("B1", record.getBuilding()),
+                () -> assertEquals("2.01", record.getRoom())
+        );
+
+        // choiceKey
+        assertEquals("COMP2701|Tutorial", record.choiceKey());
+
+        // isLecture false branch
+        assertTrue(!record.isLecture());
+
+        // toString
+        assertEquals(record.displayLine(), record.toString());
+
+        // equals same object
+        assertEquals(record, record);
+
+        // equals non-ClassRecord
+        assertNotEquals(record, "not a class record");
+
+        // equals true branch
+        ClassRecord same = record.copy();
+        assertEquals(record, same);
+
+        // hashCode consistency
+        assertEquals(record.hashCode(), same.hashCode());
+
+        // equals false branch
+        ClassRecord different = record.copy();
+        different.setClassInstance(99);
+
+        assertNotEquals(record, different);
+    }
 }

@@ -8,7 +8,7 @@ public class ClassGroup {
     private final String key;
     private final List<ClassRecord> records = new ArrayList<>();
 
-    public ClassGroup(String key) {
+    public ClassGroup(String key, String name) {
         this.key = key;
     }
 

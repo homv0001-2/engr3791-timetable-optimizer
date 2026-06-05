@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ClassService {
-    private final DataRepository repository;
+    protected final DataRepository repository;
 
     public ClassService(DataRepository repository) {
         this.repository = repository;
@@ -53,7 +53,8 @@ public class ClassService {
     private List<ClassGroup> groupRecords(List<ClassRecord> records) {
         Map<String, ClassGroup> groups = new LinkedHashMap<>();
         for (ClassRecord record : records.stream().sorted(recordComparator()).toList()) {
-            groups.computeIfAbsent(record.groupKey(), ClassGroup::new).addRecord(record);
+            String name = "";
+            groups.computeIfAbsent(record.groupKey(), key -> new ClassGroup(key, name)).addRecord(record);
         }
         return new ArrayList<>(groups.values());
     }
