@@ -12,7 +12,7 @@ public class TimetableGenerationResult {
     private final String message;
     private final List<ScheduleWarning> warnings;
 
-    private TimetableGenerationResult(boolean success, Timetable timetable, String message, List<ScheduleWarning> warnings) {
+    public TimetableGenerationResult(boolean success, Timetable timetable, String message, List<ScheduleWarning> warnings) {
         this.success = success;
         this.timetable = timetable;
         this.message = message;
