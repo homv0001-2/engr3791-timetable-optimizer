@@ -30,7 +30,7 @@ class ClassManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Thomas")
     @Tag("Core")
     @DisplayName("CM1.01 - Browse classes returns list")
     void cm101BrowseClasses() {
@@ -39,7 +39,7 @@ class ClassManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Thomas")
     @Tag("Core")
     @DisplayName("CM1.02 - View classes returns list")
     void cm102ViewClasses() {
@@ -48,7 +48,7 @@ class ClassManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Thomas")
     @Tag("Core")
     @DisplayName("CM1.03 - Search classes returns list")
     void cm103SearchClasses() {
@@ -58,7 +58,7 @@ class ClassManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Thomas")
     @Tag("Core")
     @DisplayName("CM1.04 - Find class returns Optional")
     void cm104FindClass() {
@@ -67,7 +67,7 @@ class ClassManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Thomas")
     @Tag("Critical")
     @DisplayName("CM1.05 - Edit class returns boolean")
     void cm105EditClass() {
@@ -77,7 +77,7 @@ class ClassManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Thomas")
     @Tag("Critical")
     @DisplayName("CM1.06 - Delete class returns boolean")
     void cm106DeleteClass() {

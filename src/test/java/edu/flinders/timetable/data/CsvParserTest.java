@@ -30,9 +30,9 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("TV1.01 - Import classes from a .csv file")
+    @DisplayName("CP4.01 - Import classes from a .csv file")
     void tv101ImportClassesFromCsvFile() {
         Path csvFile = Path.of("examples", "sample-topic-data.csv");
 
@@ -44,9 +44,9 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("TV1.02 - Parse location that contains a comma")
+    @DisplayName("CP4.02 - Parse location that contains a comma")
     void tv102ParseLocationThatContainsAComma() {
         // this creates a tiny CSV in memory, instead of needing a real file.
         List<String> lines = List.of(HEADER, validRow());
@@ -65,9 +65,9 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Thomas")
     @Tag("Core")
-    @DisplayName("TV1.03 - Parse topic and availability fields")
+    @DisplayName("CP4.03 - Parse topic and availability fields")
     void tv103ParseTopicAndAvailabilityFields() {
         // this creates a normal CSV row that should be accepted by the parser.
         List<String> lines = List.of(HEADER, validRow());
@@ -87,9 +87,9 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Thomas")
     @Tag("Core")
-    @DisplayName("TV1.04 - Parse date day and time fields")
+    @DisplayName("CP4.04 - Parse date day and time fields")
     void tv104ParseDateDayAndTimeFields() {
         // this creates a normal CSV row that includes a date range, day, and time range.
         List<String> lines = List.of(HEADER, validRow());
@@ -108,9 +108,9 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("TV1.05 - Reject CSV without a data row")
+    @DisplayName("CP4.05 - Reject CSV without a data row")
     void tv105RejectCsvWithoutADataRow() {
         // this gives the parser only the header row and no actual class rows.
         List<String> lines = List.of(HEADER);
@@ -120,9 +120,9 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("TV1.06 - Reject CSV with wrong header")
+    @DisplayName("TV4.06 - Reject CSV with wrong header")
     void tv106RejectCsvWithWrongHeader() {
         // this header is wrong because it says Subject instead of Topic.
         String wrongHeader = "Subject,Availability,Class,Class instance,Date,Day,Time,Location";
@@ -132,9 +132,9 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("TV1.07 - Reject class instance zero")
+    @DisplayName("CP4.07 - Reject class instance zero")
     void tv107RejectClassInstanceZero() {
         // this row uses class instance 0, which should be invalid because class instances should start from 1.
         String row = "COMP1701 Game Design,In person - Tonsley - S2 - 1,Workshop,0,27 Jul - 14 Sep,Monday,09:00 - 10:00,Tonsley T1, 1.08 Lecture Room";
@@ -144,9 +144,9 @@ class CsvParserTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("TV1.08 - Reject time range where start is after end")
+    @DisplayName("CP4.08 - Reject time range where start is after end")
     void tv108RejectTimeRangeWhereStartIsAfterEnd() {
         // this row has a start time of 12:00 and an end time of 10:00, which does not make sense.
         String row = "COMP1701 Game Design,In person - Tonsley - S2 - 1,Workshop,1,27 Jul - 14 Sep,Monday,12:00 - 10:00,Tonsley T1, 1.08 Lecture Room";

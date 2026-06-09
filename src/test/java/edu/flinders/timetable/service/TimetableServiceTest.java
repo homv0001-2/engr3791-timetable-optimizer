@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
-class TimetableServiceTest {
+class   TimetableServiceTest {
 
     private DataRepository repository;
     private TimetableService service;
@@ -69,9 +69,9 @@ class TimetableServiceTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Henry")
     @Tag("Critical")
-    @DisplayName("TS7.01 - Null timetable settings are invalid")
+    @DisplayName("TS17.01 - Null timetable settings are invalid")
     void ts701NullTimetableSettingsAreInvalid() {
         // this asks the service to validate null settings.
         ValidationResult result = service.validateSettings(null);
@@ -81,9 +81,9 @@ class TimetableServiceTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Henry")
     @Tag("Critical")
-    @DisplayName("TS7.02 - Empty topic selection is invalid")
+    @DisplayName("TS17.02 - Empty topic selection is invalid")
     void ts702EmptyTopicSelectionIsInvalid() {
         // this starts with valid settings.
         TimetableSettings settings = settings("Empty Topic Test");
@@ -99,9 +99,9 @@ class TimetableServiceTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Henry")
     @Tag("Critical")
-    @DisplayName("TS7.03 - Invalid semester is rejected")
+    @DisplayName("TS17.03 - Invalid semester is rejected")
     void ts703InvalidSemesterIsRejected() {
         // this starts with valid settings.
         TimetableSettings settings = settings("Bad Semester Test");
@@ -117,9 +117,9 @@ class TimetableServiceTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Henry")
     @Tag("Critical")
-    @DisplayName("TS7.04 - Generate timetable saves valid timetable")
+    @DisplayName("TS17.04 - Generate timetable saves valid timetable")
     void ts704GenerateTimetableSavesValidTimetable() {
         // this adds one class that matches the timetable settings.
         repository.importRecords(List.of(record("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))));
@@ -137,9 +137,9 @@ class TimetableServiceTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TS7.05 - Blank timetable name is automatically generated")
+    @DisplayName("TS17.05 - Blank timetable name is automatically generated")
     void ts705BlankTimetableNameIsAutomaticallyGenerated() {
         // this adds one class that matches the timetable settings.
         repository.importRecords(List.of(record("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))));
@@ -155,9 +155,9 @@ class TimetableServiceTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TS7.06 - Duplicate timetable name is rejected")
+    @DisplayName("TS17.06 - Duplicate timetable name is rejected")
     void ts706DuplicateTimetableNameIsRejected() {
         // this adds one matching class.
         repository.importRecords(List.of(record("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))));
@@ -173,9 +173,9 @@ class TimetableServiceTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TS7.07 - Generate timetable fails when no classes match")
+    @DisplayName("TS17.07 - Generate timetable fails when no classes match")
     void ts707GenerateTimetableFailsWhenNoClassesMatch() {
         // this imports a class for COMP9999, not COMP1701.
         repository.importRecords(List.of(record("COMP9999", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))));

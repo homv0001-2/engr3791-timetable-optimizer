@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class TimeUtilTest {
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU2.01 - overlaps detects overlapping time ranges correctly")
+    @DisplayName("TU19.01 - overlaps detects overlapping time ranges correctly")
     void tu201OverlapsBehaviour() {
 
         LocalTime aStart = LocalTime.of(9, 0);
@@ -36,9 +36,9 @@ class TimeUtilTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU2.02 - overlaps returns false when times just touch but do not overlap")
+    @DisplayName("TU19.02 - overlaps returns false when times just touch but do not overlap")
     void tu202OverlapsBoundaryBehaviour() {
 
         LocalTime aStart = LocalTime.of(9, 0);
@@ -51,9 +51,9 @@ class TimeUtilTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU2.03 - minutesBetween calculates correct duration difference")
+    @DisplayName("TU19.03 - minutesBetween calculates correct duration difference")
     void tu203MinutesBetweenBehaviour() {
 
         LocalTime firstEnd = LocalTime.of(10, 0);
@@ -69,9 +69,9 @@ class TimeUtilTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Additional")
-    @DisplayName("TU2.04 - minutesBetween supports negative durations")
+    @DisplayName("TU19.04 - minutesBetween supports negative durations")
     void tu204MinutesBetweenNegativeBehaviour() {
 
         LocalTime firstEnd = LocalTime.of(11, 0);

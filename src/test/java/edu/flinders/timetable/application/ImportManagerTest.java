@@ -40,8 +40,8 @@ class ImportManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("IM1.01 - importCsv processes records successfully")
+    @Tag("Thomas")
+    @DisplayName("IM2.01 - importCsv processes records successfully")
     void im101_importCsvProcessesRecordsSuccessfully() {
 
         Path dummyPath = Paths.get("dummy.csv");
@@ -70,8 +70,8 @@ class ImportManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("IM1.02 - importCsv handles empty CSV results")
+    @Tag("Thomas")
+    @DisplayName("IM2.02 - importCsv handles empty CSV results")
     void im102_importCsvHandlesEmptyCsvResults() {
 
         Path dummyPath = Paths.get("empty.csv");
@@ -100,8 +100,8 @@ class ImportManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("IM1.03 - constructor wiring smoke test")
+    @Tag("Thomas")
+    @DisplayName("IM2.03 - constructor wiring smoke test")
     void im103_constructorWorks() {
 
         CsvParser parser = new CsvParser() {

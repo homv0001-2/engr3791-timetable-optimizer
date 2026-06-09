@@ -52,8 +52,8 @@ class ScheduleServiceTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("SS1 - TIME_CLASH detected")
+    @Tag("Henry")
+    @DisplayName("SS16.01 - TIME_CLASH detected")
     void ss1_time_clash() {
 
         ScheduleService service = new ScheduleService();
@@ -87,8 +87,8 @@ class ScheduleServiceTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("SS2 - different days no warning")
+    @Tag("Henry")
+    @DisplayName("SS16.02 - different days no warning")
     void ss2_different_days() {
 
         ScheduleService service = new ScheduleService();
@@ -121,8 +121,8 @@ class ScheduleServiceTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("SS3 - COMMUTE_GAP detected")
+    @Tag("Henry")
+    @DisplayName("SS16.03 - COMMUTE_GAP detected")
     void ss3_commute_gap() {
 
         ScheduleService service = new ScheduleService();
@@ -156,8 +156,8 @@ class ScheduleServiceTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("SS4 - same campus no commute warning")
+    @Tag("Henry")
+    @DisplayName("SS16.04 - same campus no commute warning")
     void ss4_same_campus() {
 
         ScheduleService service = new ScheduleService();
@@ -190,8 +190,8 @@ class ScheduleServiceTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("SS5 - allow lecture overlap disables warning")
+    @Tag("Henry")
+    @DisplayName("SS16.05 - allow lecture overlap disables warning")
     void ss5_allow_lecture_overlap() {
 
         ScheduleService service = new ScheduleService();
@@ -224,8 +224,8 @@ class ScheduleServiceTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("SS6 - large gap no warning")
+    @Tag("Henry")
+    @DisplayName("SS16.06 - large gap no warning")
     void ss6_large_gap() {
 
         ScheduleService service = new ScheduleService();

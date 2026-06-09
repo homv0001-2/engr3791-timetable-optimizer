@@ -45,45 +45,45 @@ class PreferenceScorerTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.01 - Morning preference positive")
+    @DisplayName("PS15.01 - Morning preference positive")
     void ps801_morning() {
         ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
         assertTrue(score(PreferenceType.MORNINGS, List.of(r)) > 0);
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.02 - Afternoon preference positive")
+    @DisplayName("PS15.02 - Afternoon preference positive")
     void ps802_afternoon() {
         ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(13, 0));
         assertTrue(score(PreferenceType.AFTERNOONS, List.of(r)) > 0);
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.03 - Campus preference TONSLEY")
+    @DisplayName("PS15.03 - Campus preference TONSLEY")
     void ps803_tonsley() {
         ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
         assertTrue(score(PreferenceType.TONSLEY, List.of(r)) > 0);
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.04 - Campus preference BEDFORD_PARK mismatch")
+    @DisplayName("PS15.04 - Campus preference BEDFORD_PARK mismatch")
     void ps804_bedford_park_fail() {
         ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
         assertEquals(0, score(PreferenceType.BEDFORD_PARK, List.of(r)));
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.05 - SAME_CAMPUS true")
+    @DisplayName("PS15.05 - SAME_CAMPUS true")
     void ps805_same_campus_true() {
         ClassRecord a = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
         ClassRecord b = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(10, 0));
@@ -97,27 +97,27 @@ class PreferenceScorerTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.06 - MONDAY preference")
+    @DisplayName("PS15.06 - MONDAY preference")
     void ps806_monday() {
         ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
         assertTrue(score(PreferenceType.MONDAY, List.of(r)) > 0);
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.07 - TUESDAY mismatch")
+    @DisplayName("PS15.07 - TUESDAY mismatch")
     void ps807_tuesday_fail() {
         ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
         assertEquals(0, score(PreferenceType.TUESDAY, List.of(r)));
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.08 - EVENLY_SPREAD true")
+    @DisplayName("PS15.08 - EVENLY_SPREAD true")
     void ps808_evenly_spread() {
         List<ClassRecord> records = List.of(
                 record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0)),
@@ -129,9 +129,9 @@ class PreferenceScorerTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.09 - COMPACT_DAYS true")
+    @DisplayName("PS15.09 - COMPACT_DAYS true")
     void ps809_compact_days() {
         List<ClassRecord> records = List.of(
                 record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0)),
@@ -142,9 +142,9 @@ class PreferenceScorerTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("PS8.10 - weight ordering affects score")
+    @DisplayName("PS15.10 - weight ordering affects score")
     void ps810_weight_effect() {
 
         ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));

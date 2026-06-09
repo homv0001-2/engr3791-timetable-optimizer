@@ -26,7 +26,7 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Sunny")
     @DisplayName("UI1 - run basic menu flow safely")
     void ui_basic_flow() {
 
@@ -101,8 +101,8 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI2 - invalid menu option is handled")
+    @Tag("Sunny")
+    @DisplayName("CU9.01 - invalid menu option is handled")
     void ui_invalid_menu_option() {
 
         setInput("999\n0\n");
@@ -111,8 +111,8 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI3 - CSV import failure path (exception handling)")
+    @Tag("Sunny")
+    @DisplayName("CU9.02 - CSV import failure path (exception handling)")
     void ui_import_failure() {
 
         ImportManager importManager = new ImportManager(
@@ -136,8 +136,8 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI4 - browse and view empty class list")
+    @Tag("Sunny")
+    @DisplayName("CU9.03 - browse and view empty class list")
     void ui_empty_class_views() {
 
         setInput("2\n3\n0\n");
@@ -146,8 +146,8 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI5 - browse empty timetables")
+    @Tag("Sunny")
+    @DisplayName("CU9.04 - browse empty timetables")
     void ui_empty_timetables() {
 
         setInput("8\n0\n");
@@ -156,8 +156,8 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI6 - view missing timetable")
+    @Tag("Sunny")
+    @DisplayName("CU9.05 - view missing timetable")
     void ui_view_missing_timetable() {
 
         setInput("9\nunknown\n0\n");
@@ -166,8 +166,8 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI7 - export missing timetable")
+    @Tag("Sunny")
+    @DisplayName("CU9.06 - export missing timetable")
     void ui_export_missing_timetable() {
 
         setInput("12\nmissing\n0\n");
@@ -176,8 +176,8 @@ class ConsoleUITest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("UI8 - delete timetable cancelled by user")
+    @Tag("Sunny")
+    @DisplayName("CU9.07 - delete timetable cancelled by user")
     void ui_delete_cancelled() {
 
         setInput("11\ntest\nn\n0\n");

@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExportServiceTest {
 
     @Test
-    @Tag("hone0038")
+    @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("ES1.01 - ExportService delegates exportTimetable correctly")
+    @DisplayName("ES14.01 - ExportService delegates exportTimetable correctly")
     void es101DelegatesExportCorrectly() {
 
         // this stub captures calls made by ExportService
@@ -58,9 +58,9 @@ class ExportServiceTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("ES1.02 - Parameters are passed through unchanged")
+    @DisplayName("ES14.02 - Parameters are passed through unchanged")
     void es102ParametersPassedThrough() {
 
         class StubExporter extends FileExporter {
@@ -98,9 +98,9 @@ class ExportServiceTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("ES1.03 - ExportService correctly uses injected FileExporter")
+    @DisplayName("ES14.03 - ExportService correctly uses injected FileExporter")
     void es103ConstructorInjectionWorks() {
 
         class StubExporter extends FileExporter {

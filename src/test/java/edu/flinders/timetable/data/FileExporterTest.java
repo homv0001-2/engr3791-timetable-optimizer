@@ -48,9 +48,9 @@ class FileExporterTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("EX3.01 - Export timetable creates CSV file")
+    @DisplayName("FE6.01 - Export timetable creates CSV file")
     void ex301ExportTimetableCreatesCsvFile() throws Exception {
         // this creates a timetable with one class in it.
         Timetable timetable = new Timetable("Export Test", List.of(record("Festival Tower", "506 Computer Lab")));
@@ -74,9 +74,9 @@ class FileExporterTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("EX3.02 - Export quotes fields that contain commas")
+    @DisplayName("FE6.02 - Export quotes fields that contain commas")
     void ex302ExportQuotesFieldsThatContainCommas() throws Exception {
         // this creates a timetable where the building and room both contain commas.
         Timetable timetable = new Timetable("Export Test", List.of(record("Festival Tower, Level 5", "506, Computer Lab")));

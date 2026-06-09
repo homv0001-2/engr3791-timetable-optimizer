@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class TextUtilTest {
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU1.01 - isBlank detects null, empty and whitespace strings")
+    @DisplayName("TX18.01 - isBlank detects null, empty and whitespace strings")
     void tu101IsBlankBehaviour() {
 
         assertAll(
@@ -26,9 +26,9 @@ class TextUtilTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU1.02 - clean trims whitespace and handles null")
+    @DisplayName("TX18.02 - clean trims whitespace and handles null")
     void tu102CleanBehaviour() {
 
         assertAll(
@@ -39,9 +39,9 @@ class TextUtilTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU1.03 - containsIgnoreCase matches ignoring case and whitespace")
+    @DisplayName("TX18.03 - containsIgnoreCase matches ignoring case and whitespace")
     void tu103ContainsIgnoreCaseBehaviour() {
 
         assertAll(
@@ -55,9 +55,9 @@ class TextUtilTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU1.04 - equalsIgnoreCase compares trimmed values correctly")
+    @DisplayName("TX18.04 - equalsIgnoreCase compares trimmed values correctly")
     void tu104EqualsIgnoreCaseBehaviour() {
 
         assertAll(
@@ -71,9 +71,9 @@ class TextUtilTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Henry")
     @Tag("Additional")
-    @DisplayName("TU1.05 - firstNonBlank returns new value when valid otherwise old value")
+    @DisplayName("TX18.05 - firstNonBlank returns new value when valid otherwise old value")
     void tu105FirstNonBlankBehaviour() {
 
         assertAll(

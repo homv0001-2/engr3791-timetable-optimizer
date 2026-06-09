@@ -41,9 +41,9 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("CR4.01 - Import key ignores time and location")
+    @DisplayName("CR7.01 - Import key ignores time and location")
     void cr401ImportKeyIgnoresTimeAndLocation() {
         // this is the first record with the original time and location.
         ClassRecord first = record("Workshop", 1, LocalDate.of(2026, 7, 27), DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0), "Old Building", "Old Room");
@@ -56,9 +56,9 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("CR4.02 - Group key ignores date day time and location")
+    @DisplayName("CR7.02 - Group key ignores date day time and location")
     void cr402GroupKeyIgnoresDateDayTimeAndLocation() {
         // this is the first class record in a group.
         ClassRecord first = record("Workshop", 1, LocalDate.of(2026, 7, 27), DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0), "Building A", "Room A");
@@ -74,9 +74,9 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("CR4.03 - Copy creates separate class record")
+    @DisplayName("CR7.03 - Copy creates separate class record")
     void cr403CopyCreatesSeparateClassRecord() {
         // this creates the original class record.
         ClassRecord original = record("Tutorial", 2, LocalDate.of(2026, 7, 27), DayOfWeek.WEDNESDAY, LocalTime.of(11, 0), LocalTime.of(12, 0), "Tonsley T1", "1.08");
@@ -96,9 +96,9 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("CR4.04 - Lecture class is detected")
+    @DisplayName("CR7.04 - Lecture class is detected")
     void cr404LectureClassIsDetected() {
         // this creates a class with "Lecture" in the class format.
         ClassRecord lecture = record("Online Lecture", 1, LocalDate.of(2026, 7, 27), DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0), "Online", "Room");
@@ -108,9 +108,9 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("homv0001")
+    @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("CR4.05 - Display line contains important class details")
+    @DisplayName("CR7.05 - Display line contains important class details")
     void cr405DisplayLineContainsImportantClassDetails() {
         // this creates a normal class record.
         ClassRecord classRecord = record("Workshop", 1, LocalDate.of(2026, 7, 27), DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
@@ -128,9 +128,9 @@ class ClassRecordTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("CR4.06 - Getters setters choice key equals hashcode and tostring")
+    @DisplayName("CR7.06 - Getters setters choice key equals hashcode and tostring")
     void cr406RemainingCoverage() {
 
         ClassRecord record = record(

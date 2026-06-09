@@ -20,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class TimetableManagerTest {
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.01 - generate timetable delegates")
+    @Tag("Thomas")
+    @DisplayName("TM3.01 - generate timetable delegates")
     void tm101_generateTimetable() {
 
         TimetableSettings settings = new TimetableSettings();
@@ -51,8 +51,8 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.02 - browse timetables")
+    @Tag("Thomas")
+    @DisplayName("TM3.02 - browse timetables")
     void tm102_browseTimetables() {
 
         List<Timetable> list = List.of(new Timetable(null));
@@ -77,8 +77,8 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.03 - view timetable optional")
+    @Tag("Thomas")
+    @DisplayName("TM3.03 - view timetable optional")
     void tm103_viewTimetable() {
 
         Timetable t = new Timetable(null);
@@ -103,8 +103,8 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.04 - swap flow")
+    @Tag("Thomas")
+    @DisplayName("TM3.04 - swap flow")
     void tm104_swapFlow() {
 
         PendingSwapResult swap = new PendingSwapResult(
@@ -144,8 +144,8 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.05 - delete timetable")
+    @Tag("Thomas")
+    @DisplayName("TM3.05 - delete timetable")
     void tm105_deleteTimetable() {
 
         TimetableService service = new TimetableService(null, null) {
@@ -169,8 +169,8 @@ class TimetableManagerTest {
     }
 
     @Test
-    @Tag("hone0038")
-    @DisplayName("TM1.06 - export timetable")
+    @Tag("Thomas")
+    @DisplayName("TM3.06 - export timetable")
     void tm106_exportTimetable() {
 
         Path out = Paths.get("out.csv");

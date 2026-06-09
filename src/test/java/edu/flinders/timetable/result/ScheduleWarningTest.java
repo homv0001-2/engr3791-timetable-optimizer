@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ScheduleWarningTest {
 
     @Test
-    @Tag("hone0038")
+    @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("TW1.01 - Create TIME_CLASH warning and verify fields")
+    @DisplayName("SWA12.01 - Create TIME_CLASH warning and verify fields")
     void tw101CreateTimeClashWarning() {
         ClassRecord first = null;
         ClassRecord second = null;
@@ -37,9 +37,9 @@ class ScheduleWarningTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("TW1.02 - Create COMMUTE_GAP warning and verify fields")
+    @DisplayName("SWA12.02 - Create COMMUTE_GAP warning and verify fields")
     void tw102CreateCommuteGapWarning() {
         ClassRecord first = null;
         ClassRecord second = null;
@@ -60,9 +60,9 @@ class ScheduleWarningTest {
     }
 
     @Test
-    @Tag("hone0038")
+    @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("TW1.03 - toString formats type and message correctly")
+    @DisplayName("SWA12.03 - toString formats type and message correctly")
     void tw103ToStringFormat() {
         ScheduleWarning warning = new ScheduleWarning(
                 ScheduleWarning.Type.TIME_CLASH,
