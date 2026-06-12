@@ -121,7 +121,7 @@ class SearchCriteriaTest {
     @Test
     @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("SC8.07 - Validates that all getters and setters correctly store and retrieve values in SearchCriteria.")
+    @DisplayName("SC8.06 - Validates that all getters and setters correctly store and retrieve values in SearchCriteria.")
     void gettersAndSettersWork() {
 
         SearchCriteria criteria = new SearchCriteria();
