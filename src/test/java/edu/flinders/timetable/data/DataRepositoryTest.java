@@ -15,24 +15,25 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
 class DataRepositoryTest {
 
+    // repository instance to be tested
     private DataRepository repository;
 
     @BeforeEach
-    void setUp() {
-        // this creates a fresh empty repository before each test so tests do not affect each other.
+    void setup() {
+        // instantiate a fresh repository for each test
         repository = new DataRepository();
     }
 
-    private ClassRecord record(String topicCode, String classFormat, int instance, LocalTime start, LocalTime end, String building, String room) {
-        // this helper makes a simple ClassRecord so each test does not need to repeat the full constructor every time.
+    /**
+     * Helper method to quickly create a ClassRecord with specified parameters.
+     */
+    private ClassRecord record(String topicCode, String classFormat, int instance,
+                               LocalTime start, LocalTime end, String building, String room) {
         return new ClassRecord(
                 topicCode,
                 "Game Design",
@@ -55,15 +56,16 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Critical")
-    @DisplayName("DR5.01 - Import new class record increases new count")
-    void dr201ImportNewClassRecordIncreasesNewCount() {
-        // this creates one normal class record.
-        ClassRecord newRecord = record("COMP1701", "Workshop", 1, LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
+    @DisplayName("DR5.01 - Verifies that importing a new class record increases the repository’s new record count and stores the record.")
+    void importNewClassRecordIncreasesNewCount() {
+        // create a new class record to import
+        ClassRecord newRecord = record("COMP1701", "Workshop", 1,
+                LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
 
-        // this imports the record into the repository.
+        // import the record and capture the result
         ImportResult result = repository.importRecords(List.of(newRecord));
 
-        // this checks the repository counted it as one new record and saved it.
+        // verify that the new record count increased, no updates occurred, and repository now has one record
         assertAll(
                 () -> assertEquals(1, result.getNewRecordCount()),
                 () -> assertEquals(0, result.getUpdatedRecordCount()),
@@ -74,22 +76,24 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Critical")
-    @DisplayName("DR5.02 - Import duplicate updates time and location")
-    void dr202ImportDuplicateUpdatesTimeAndLocation() {
-        // this is the original class record.
-        ClassRecord original = record("COMP1701", "Workshop", 1, LocalTime.of(9, 0), LocalTime.of(10, 0), "Old Building", "Old Room");
+    @DisplayName("DR5.02 - Checks that importing a duplicate class record updates the existing record’s time and location without creating a new entry.")
+    void importDuplicateUpdatesTimeAndLocation() {
+        // original record
+        ClassRecord original = record("COMP1701", "Workshop", 1,
+                LocalTime.of(9, 0), LocalTime.of(10, 0), "Old Building", "Old Room");
 
-        // this has the same import key, but a different time and location.
-        ClassRecord updated = record("COMP1701", "Workshop", 1, LocalTime.of(11, 0), LocalTime.of(12, 0), "New Building", "New Room");
+        // updated record with new time and location
+        ClassRecord updated = record("COMP1701", "Workshop", 1,
+                LocalTime.of(11, 0), LocalTime.of(12, 0), "New Building", "New Room");
 
-        // this imports the original first, then imports the duplicate.
+        // import original first
         repository.importRecords(List.of(original));
+        // import updated record, should count as update
         ImportResult secondResult = repository.importRecords(List.of(updated));
 
-        // this gets the saved record after the duplicate import.
         ClassRecord stored = repository.listClassRecords().get(0);
 
-        // this checks that no extra duplicate was created, and only time/location were updated.
+        // verify the update behavior
         assertAll(
                 () -> assertEquals(0, secondResult.getNewRecordCount()),
                 () -> assertEquals(1, secondResult.getUpdatedRecordCount()),
@@ -103,32 +107,35 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("DR5.03 - Find class by import key returns class")
-    void dr203FindClassByImportKeyReturnsClass() {
-        // this creates and imports one class record.
-        ClassRecord classRecord = record("COMP1701", "Workshop", 1, LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
+    @DisplayName("DR5.03 - Ensures that a class record can be retrieved from the repository using its import key.")
+    void findClassByImportKeyReturnsClass() {
+        // import a class record
+        ClassRecord classRecord = record("COMP1701", "Workshop", 1,
+                LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
         repository.importRecords(List.of(classRecord));
 
-        // this checks that the repository can find the class using its import key.
+        // verify that we can find it using its unique import key
         assertTrue(repository.findClassByImportKey(classRecord.importKey()).isPresent());
     }
 
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("DR5.04 - Replace existing class record")
-    void dr204ReplaceExistingClassRecord() {
-        // this creates the original record and puts it into the repository.
-        ClassRecord original = record("COMP1701", "Workshop", 1, LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
+    @DisplayName("DR5.04 - Confirms that an existing class record can be replaced with a new record using the same import key.")
+    void replaceExistingClassRecord() {
+        // original record
+        ClassRecord original = record("COMP1701", "Workshop", 1,
+                LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
         repository.importRecords(List.of(original));
 
-        // this creates a replacement class record.
-        ClassRecord replacement = record("COMP1701", "Tutorial", 2, LocalTime.of(13, 0), LocalTime.of(14, 0), "Festival Tower", "506");
+        // replacement record
+        ClassRecord replacement = record("COMP1701", "Tutorial", 2,
+                LocalTime.of(13, 0), LocalTime.of(14, 0), "Festival Tower", "506");
 
-        // this replaces the original record with the replacement.
+        // replace using the original's import key
         boolean replaced = repository.replaceClass(original.importKey(), replacement);
 
-        // this checks that the replacement worked and that the new class details are saved.
+        // verify replacement worked
         assertAll(
                 () -> assertTrue(replaced),
                 () -> assertEquals("Tutorial", repository.listClassRecords().get(0).getClassFormat()),
@@ -139,16 +146,16 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("DR5.05 - Delete existing class record")
-    void dr205DeleteExistingClassRecord() {
-        // this creates and imports one class record.
-        ClassRecord classRecord = record("COMP1701", "Workshop", 1, LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
+    @DisplayName("DR5.05 - Validates that a class record can be deleted and the repository is updated accordingly.")
+    void deleteExistingClassRecord() {
+        ClassRecord classRecord = record("COMP1701", "Workshop", 1,
+                LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
         repository.importRecords(List.of(classRecord));
 
-        // this deletes the class by using its import key.
+        // attempt deletion
         boolean deleted = repository.deleteClass(classRecord.importKey());
 
-        // this checks that the delete operation worked and that the repository is now empty.
+        // verify deletion and empty repository
         assertAll(
                 () -> assertTrue(deleted),
                 () -> assertTrue(repository.listClassRecords().isEmpty())
@@ -158,27 +165,27 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("DR5.06 - Delete missing class record returns false")
-    void dr206DeleteMissingClassRecordReturnsFalse() {
-        // this tries to delete a class that does not exist.
+    @DisplayName("DR5.06 - Verifies that attempting to delete a non-existent class record returns false and does not affect the repository.")
+    void deleteMissingClassRecordReturnsFalse() {
+        // attempt deletion of a non-existent record
         boolean deleted = repository.deleteClass("missing-key");
 
-        // this checks that the repository returns false instead of pretending the delete worked.
+        // should return false
         assertFalse(deleted);
     }
 
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("DR5.07 - Save find and delete timetable")
-    void dr207SaveFindAndDeleteTimetable() {
-        // this creates a simple empty timetable.
+    @DisplayName("DR5.07 - Tests that timetables can be saved, found, listed, and deleted correctly in the repository.")
+    void saveFindAndDeleteTimetable() {
+        // create a timetable
         Timetable timetable = new Timetable("My Timetable");
 
-        // this saves the timetable into the repository.
+        // save it to the repository
         repository.saveTimetable(timetable);
 
-        // this checks save, find, list, and delete for timetables in one simple test.
+        // verify save, retrieval, list, and deletion functionality
         assertAll(
                 () -> assertTrue(repository.timetableNameExists("My Timetable")),
                 () -> assertTrue(repository.findTimetable("My Timetable").isPresent()),

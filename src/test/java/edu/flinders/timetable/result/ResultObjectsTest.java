@@ -22,16 +22,16 @@ class ResultObjectsTest {
     @Tag("Sunny")
     @Tag("Additional")
     @DisplayName("RO11.01 - Import result records counts and errors")
-    void ro901ImportResultRecordsCountsAndErrors() {
+    void importResultCountsAndErrors() {
         // this creates an empty import result object.
         ImportResult result = new ImportResult();
 
-        // this manually changes the result like the import process would.
+        // this manually updates the result like the import process would.
         result.incrementNewRecordCount();
         result.incrementUpdatedRecordCount();
         result.addError("bad row");
 
-        // this checks that the result object stores counts and errors properly.
+        // this checks that the result object stores counts and errors correctly.
         assertAll(
                 () -> assertEquals(1, result.getNewRecordCount()),
                 () -> assertEquals(1, result.getUpdatedRecordCount()),
@@ -44,11 +44,11 @@ class ResultObjectsTest {
     @Tag("Sunny")
     @Tag("Additional")
     @DisplayName("RO11.02 - Timetable generation failure stores message")
-    void ro902TimetableGenerationFailureStoresMessage() {
+    void timetableGenerationFailureStoresMessage() {
         // this creates a failed timetable generation result.
         TimetableGenerationResult result = TimetableGenerationResult.failure("No matching classes");
 
-        // this checks that the failure result has no timetable and stores the error message.
+        // this verifies that failure state stores no timetable and keeps the message.
         assertAll(
                 () -> assertFalse(result.isSuccess()),
                 () -> assertNull(result.getTimetable()),
@@ -60,14 +60,14 @@ class ResultObjectsTest {
     @Tag("Sunny")
     @Tag("Additional")
     @DisplayName("RO11.03 - Timetable generation success stores timetable")
-    void ro903TimetableGenerationSuccessStoresTimetable() {
+    void timetableGenerationSuccessStoresTimetable() {
         // this creates a simple timetable.
         Timetable timetable = new Timetable("Success Test");
 
-        // this creates a successful generation result using that timetable.
+        // this creates a successful generation result using the timetable.
         TimetableGenerationResult result = TimetableGenerationResult.success(timetable, List.of());
 
-        // this checks that the success result stores the timetable and has no warnings.
+        // this verifies that success stores the timetable and no warnings.
         assertAll(
                 () -> assertTrue(result.isSuccess()),
                 () -> assertEquals(timetable, result.getTimetable()),

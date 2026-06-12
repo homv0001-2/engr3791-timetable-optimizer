@@ -18,27 +18,23 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.DisplayName.class)
-class   TimetableServiceTest {
+class TimetableServiceTest {
 
     private DataRepository repository;
     private TimetableService service;
 
     @BeforeEach
     void setUp() {
-        // this creates a fresh repository and timetable service before each test.
+        // Creates a fresh repository and timetable service before each test
         repository = new DataRepository();
         service = new TimetableService(repository, new ScheduleService());
     }
 
-    private ClassRecord record(String topicCode, String classFormat, int instance, String campus, DayOfWeek day, LocalTime start, LocalTime end) {
-        // this helper creates a simple class record for timetable generation tests.
+    // Helper to create a simple class record for timetable generation tests
+    private ClassRecord createRecord(String topicCode, String classFormat, int instance, String campus, DayOfWeek day, LocalTime start, LocalTime end) {
         return new ClassRecord(
                 topicCode,
                 "Game Design",
@@ -58,8 +54,8 @@ class   TimetableServiceTest {
         );
     }
 
-    private TimetableSettings settings(String name) {
-        // this creates basic valid timetable settings for one topic, one semester, and one campus.
+    // Helper to create valid timetable settings for one topic, one semester, one campus
+    private TimetableSettings createSettings(String name) {
         TimetableSettings settings = new TimetableSettings();
         settings.setTimetableName(name);
         settings.setTopicCodes(Set.of("COMP1701"));
@@ -72,11 +68,11 @@ class   TimetableServiceTest {
     @Tag("Henry")
     @Tag("Critical")
     @DisplayName("TS17.01 - Null timetable settings are invalid")
-    void ts701NullTimetableSettingsAreInvalid() {
-        // this asks the service to validate null settings.
+    void nullTimetableSettingsAreInvalid() {
+        // Validate null settings
         ValidationResult result = service.validateSettings(null);
 
-        // this checks that null settings are rejected.
+        // Null settings should be invalid
         assertFalse(result.isValid());
     }
 
@@ -84,17 +80,16 @@ class   TimetableServiceTest {
     @Tag("Henry")
     @Tag("Critical")
     @DisplayName("TS17.02 - Empty topic selection is invalid")
-    void ts702EmptyTopicSelectionIsInvalid() {
-        // this starts with valid settings.
-        TimetableSettings settings = settings("Empty Topic Test");
+    void emptyTopicSelectionIsInvalid() {
+        TimetableSettings settings = createSettings("Empty Topic Test");
 
-        // this removes all selected topics, which should be invalid.
+        // Remove all selected topics
         settings.setTopicCodes(Set.of());
 
-        // this validates the settings.
+        // Validate settings
         ValidationResult result = service.validateSettings(settings);
 
-        // this checks that timetable generation settings need at least one topic.
+        // At least one topic is required
         assertFalse(result.isValid());
     }
 
@@ -102,17 +97,15 @@ class   TimetableServiceTest {
     @Tag("Henry")
     @Tag("Critical")
     @DisplayName("TS17.03 - Invalid semester is rejected")
-    void ts703InvalidSemesterIsRejected() {
-        // this starts with valid settings.
-        TimetableSettings settings = settings("Bad Semester Test");
+    void invalidSemesterIsRejected() {
+        TimetableSettings settings = createSettings("Bad Semester Test");
 
-        // this sets semester 3, which is not allowed by the assignment specification.
+        // Set invalid semester (not 1 or 2)
         settings.setSemesters(Set.of(3));
 
-        // this validates the settings.
         ValidationResult result = service.validateSettings(settings);
 
-        // this checks that only semester 1 and/or 2 are accepted.
+        // Only semesters 1 and 2 are valid
         assertFalse(result.isValid());
     }
 
@@ -120,14 +113,16 @@ class   TimetableServiceTest {
     @Tag("Henry")
     @Tag("Critical")
     @DisplayName("TS17.04 - Generate timetable saves valid timetable")
-    void ts704GenerateTimetableSavesValidTimetable() {
-        // this adds one class that matches the timetable settings.
-        repository.importRecords(List.of(record("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))));
+    void generateTimetableSavesValidTimetable() {
+        // Add a class matching the timetable settings
+        repository.importRecords(List.of(
+                createRecord("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))
+        ));
 
-        // this generates the timetable.
-        TimetableGenerationResult result = service.generateTimetable(settings("My Timetable"));
+        // Generate timetable
+        TimetableGenerationResult result = service.generateTimetable(createSettings("My Timetable"));
 
-        // this checks that the timetable was generated and saved in the repository.
+        // Timetable should be generated and saved
         assertAll(
                 () -> assertTrue(result.isSuccess()),
                 () -> assertNotNull(result.getTimetable()),
@@ -140,14 +135,15 @@ class   TimetableServiceTest {
     @Tag("Henry")
     @Tag("Core")
     @DisplayName("TS17.05 - Blank timetable name is automatically generated")
-    void ts705BlankTimetableNameIsAutomaticallyGenerated() {
-        // this adds one class that matches the timetable settings.
-        repository.importRecords(List.of(record("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))));
+    void blankTimetableNameIsAutomaticallyGenerated() {
+        repository.importRecords(List.of(
+                createRecord("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))
+        ));
 
-        // this passes a blank timetable name.
-        TimetableGenerationResult result = service.generateTimetable(settings("   "));
+        // Pass blank name
+        TimetableGenerationResult result = service.generateTimetable(createSettings("   "));
 
-        // this checks that the service creates a default timetable name.
+        // Service generates default name
         assertAll(
                 () -> assertTrue(result.isSuccess()),
                 () -> assertEquals("Timetable 1", result.getTimetable().getName())
@@ -158,17 +154,18 @@ class   TimetableServiceTest {
     @Tag("Henry")
     @Tag("Core")
     @DisplayName("TS17.06 - Duplicate timetable name is rejected")
-    void ts706DuplicateTimetableNameIsRejected() {
-        // this adds one matching class.
-        repository.importRecords(List.of(record("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))));
+    void duplicateTimetableNameIsRejected() {
+        repository.importRecords(List.of(
+                createRecord("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))
+        ));
 
-        // this creates the first timetable using the name Duplicate Test.
-        service.generateTimetable(settings("Duplicate Test"));
+        // Create first timetable
+        service.generateTimetable(createSettings("Duplicate Test"));
 
-        // this validates the same name again.
-        ValidationResult result = service.validateSettings(settings("Duplicate Test"));
+        // Validate same name again
+        ValidationResult result = service.validateSettings(createSettings("Duplicate Test"));
 
-        // this checks that the same timetable name cannot be reused.
+        // Duplicate names are invalid
         assertFalse(result.isValid());
     }
 
@@ -176,14 +173,16 @@ class   TimetableServiceTest {
     @Tag("Henry")
     @Tag("Core")
     @DisplayName("TS17.07 - Generate timetable fails when no classes match")
-    void ts707GenerateTimetableFailsWhenNoClassesMatch() {
-        // this imports a class for COMP9999, not COMP1701.
-        repository.importRecords(List.of(record("COMP9999", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))));
+    void generateTimetableFailsWhenNoClassesMatch() {
+        // Import a class for a different topic
+        repository.importRecords(List.of(
+                createRecord("COMP9999", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))
+        ));
 
-        // this tries to generate a timetable for COMP1701.
-        TimetableGenerationResult result = service.generateTimetable(settings("No Match Test"));
+        // Generate timetable for COMP1701
+        TimetableGenerationResult result = service.generateTimetable(createSettings("No Match Test"));
 
-        // this checks that generation fails because no imported classes match the selected settings.
+        // Generation should fail due to no matching classes
         assertFalse(result.isSuccess());
     }
 }

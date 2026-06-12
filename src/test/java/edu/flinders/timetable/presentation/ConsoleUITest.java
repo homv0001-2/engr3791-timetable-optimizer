@@ -21,15 +21,17 @@ import java.util.*;
 class ConsoleUITest {
 
     private void setInput(String data) {
+        // redirect System.in to simulate user input
         InputStream in = new ByteArrayInputStream(data.getBytes());
         System.setIn(in);
     }
 
     @Test
     @Tag("Sunny")
-    @DisplayName("UI1 - run basic menu flow safely")
-    void ui_basic_flow() {
+    @DisplayName("CU9.01 - run basic menu flow safely")
+    void basicFlow() {
 
+        // ImportManager stub that simulates CSV parsing
         ImportManager importManager = new ImportManager(
                 new CsvParser() {
                     @Override
@@ -45,6 +47,7 @@ class ConsoleUITest {
                 }
         );
 
+        // ClassManager stub with empty responses
         ClassManager classManager = new ClassManager(null) {
             @Override public List<ClassGroup> browseClasses() { return List.of(); }
             @Override public List<ClassRecord> viewClasses() { return List.of(); }
@@ -54,6 +57,7 @@ class ConsoleUITest {
             @Override public boolean deleteClass(String key) { return true; }
         };
 
+        // TimetableManager stub simulating timetable operations
         TimetableManager timetableManager = new TimetableManager(
                 new TimetableService(null, null) {
                     @Override
@@ -88,6 +92,7 @@ class ConsoleUITest {
                 }
         );
 
+        // simulate a user flow: import CSV, browse timetables, view timetable, exit
         setInput(
                 "1\n" +
                         "dummy.csv\n" +
@@ -97,14 +102,16 @@ class ConsoleUITest {
                         "0\n"
         );
 
+        // run the console UI with the stubs
         new ConsoleUI(importManager, classManager, timetableManager).start();
     }
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.01 - invalid menu option is handled")
-    void ui_invalid_menu_option() {
+    @DisplayName("CU9.02 - invalid menu option is handled")
+    void invalidMenuOption() {
 
+        // simulate entering invalid option and then exit
         setInput("999\n0\n");
 
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
@@ -112,9 +119,10 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.02 - CSV import failure path (exception handling)")
-    void ui_import_failure() {
+    @DisplayName("CU9.03 - CSV import failure path (exception handling)")
+    void importFailure() {
 
+        // simulate CSV parsing throwing an exception
         ImportManager importManager = new ImportManager(
                 new CsvParser() {
                     @Override
@@ -137,9 +145,10 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.03 - browse and view empty class list")
-    void ui_empty_class_views() {
+    @DisplayName("CU9.04 - browse and view empty class list")
+    void emptyClassViews() {
 
+        // simulate browsing classes and viewing classes when none exist
         setInput("2\n3\n0\n");
 
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
@@ -147,9 +156,10 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.04 - browse empty timetables")
-    void ui_empty_timetables() {
+    @DisplayName("CU9.05 - browse empty timetables")
+    void emptyTimetables() {
 
+        // simulate browsing timetables when none exist
         setInput("8\n0\n");
 
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
@@ -157,9 +167,10 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.05 - view missing timetable")
-    void ui_view_missing_timetable() {
+    @DisplayName("CU9.06 - view missing timetable")
+    void viewMissingTimetable() {
 
+        // simulate attempting to view a timetable that doesn't exist
         setInput("9\nunknown\n0\n");
 
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
@@ -167,9 +178,10 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.06 - export missing timetable")
-    void ui_export_missing_timetable() {
+    @DisplayName("CU9.07 - export missing timetable")
+    void exportMissingTimetable() {
 
+        // simulate attempting to export a missing timetable
         setInput("12\nmissing\n0\n");
 
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
@@ -177,15 +189,18 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.07 - delete timetable cancelled by user")
-    void ui_delete_cancelled() {
+    @DisplayName("CU9.08 - delete timetable cancelled by user")
+    void deleteCancelled() {
 
+        // simulate user cancelling deletion of a timetable
         setInput("11\ntest\nn\n0\n");
 
         new ConsoleUI(dummyImport(), dummyClassManager(), dummyTimetableManager()).start();
     }
 
+    // helper stubs for import, class manager, timetable manager
     private ImportManager dummyImport() {
+        // import manager always succeeds
         return new ImportManager(
                 new CsvParser() {
                     @Override public List<ClassRecord> parse(Path path) { return List.of(); }
@@ -199,6 +214,7 @@ class ConsoleUITest {
     }
 
     private ClassManager dummyClassManager() {
+        // class manager returns empty results
         return new ClassManager(null) {
             @Override public List<ClassGroup> browseClasses() { return List.of(); }
             @Override public List<ClassRecord> viewClasses() { return List.of(); }
@@ -210,6 +226,7 @@ class ConsoleUITest {
     }
 
     private TimetableManager dummyTimetableManager() {
+        // timetable manager returns empty or failing results
         return new TimetableManager(
                 new TimetableService(null, null) {
                     @Override public TimetableGenerationResult generateTimetable(TimetableSettings settings) {

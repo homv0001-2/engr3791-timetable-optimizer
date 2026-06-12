@@ -40,8 +40,8 @@ class SearchCriteriaTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("SC8.01 - Empty search criteria matches class")
-    void sc501EmptySearchCriteriaMatchesClass() {
+    @DisplayName("SC8.01 - Verifies that an empty SearchCriteria matches all class records (no filters applied).")
+    void emptySearchCriteriaMatchesClass() {
         // this creates empty search criteria, meaning the user has not filtered by anything.
         SearchCriteria criteria = new SearchCriteria();
 
@@ -52,8 +52,8 @@ class SearchCriteriaTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("SC8.02 - Topic code search is case insensitive")
-    void sc502TopicCodeSearchIsCaseInsensitive() {
+    @DisplayName("SC8.02 - Ensures that topic code matching is case-insensitive (e.g., \"comp1701\" matches \"COMP1701\").")
+    void topicCodeSearchIsCaseInsensitive() {
         // this creates search criteria with the topic code in lowercase.
         SearchCriteria criteria = new SearchCriteria();
         criteria.setTopicCode("comp1701");
@@ -65,8 +65,8 @@ class SearchCriteriaTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("SC8.03 - Multiple search criteria use AND logic")
-    void sc503MultipleSearchCriteriaUseAndLogic() {
+    @DisplayName("SC8.03 - Confirms that multiple criteria must all match for a class to be considered a match (AND logic).")
+    void multipleSearchCriteriaUseAndLogic() {
         // this creates criteria where all fields should match the record.
         SearchCriteria criteria = new SearchCriteria();
         criteria.setTopicCode("COMP1701");
@@ -80,8 +80,8 @@ class SearchCriteriaTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("SC8.04 - Search criteria rejects mismatched semester")
-    void sc504SearchCriteriaRejectsMismatchedSemester() {
+    @DisplayName("SC8.04 - Verifies that a mismatch in any field (e.g., semester) causes the class not to match.")
+    void searchCriteriaRejectsMismatchedSemester() {
         // this creates criteria where the topic code matches but the semester does not.
         SearchCriteria criteria = new SearchCriteria();
         criteria.setTopicCode("COMP1701");
@@ -94,8 +94,8 @@ class SearchCriteriaTest {
     @Test
     @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("SC8.05 - All search fields can match")
-    void sc505AllSearchFieldsCanMatch() {
+    @DisplayName("SC8.05 - Ensures that when all fields are populated correctly, the class record is successfully matched.")
+    void allSearchFieldsCanMatch() {
 
         SearchCriteria criteria = new SearchCriteria();
 
@@ -121,8 +121,8 @@ class SearchCriteriaTest {
     @Test
     @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("SC8.07 - Getters and setters work")
-    void sc507GettersAndSettersWork() {
+    @DisplayName("SC8.07 - Validates that all getters and setters correctly store and retrieve values in SearchCriteria.")
+    void gettersAndSettersWork() {
 
         SearchCriteria criteria = new SearchCriteria();
 

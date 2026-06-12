@@ -11,13 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class MainTest {
 
     @Test
-    @Tag("Henry")
+    @Tag("Jeff")
     @Tag("Core")
     @DisplayName("MA20.01 - Tests main method functionality")
     void mainDoesNotHang() {
 
+        // simulate user typing "exit" so the application terminates immediately
         System.setIn(new ByteArrayInputStream("exit\n".getBytes()));
 
+        // verify that main runs without throwing exceptions or hanging
         assertDoesNotThrow(() -> Main.main(new String[]{}));
     }
 }

@@ -15,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ScheduleServiceTest {
 
-    private ClassRecord record(
+    // Helper method to build a ClassRecord with full scheduling details
+    private ClassRecord createRecord(
             String topicCode,
             String topicName,
             String attendanceMode,
@@ -54,11 +55,12 @@ class ScheduleServiceTest {
     @Test
     @Tag("Henry")
     @DisplayName("SS16.01 - TIME_CLASH detected")
-    void ss1_time_clash() {
+    void timeClashDetected() {
 
         ScheduleService service = new ScheduleService();
 
-        ClassRecord a = record(
+        // Two overlapping classes on same day/time range
+        ClassRecord a = createRecord(
                 "COMP", "A", "In person", "City", 1, 1,
                 "Lecture", 1,
                 LocalDate.of(2026, 1, 1),
@@ -69,7 +71,7 @@ class ScheduleServiceTest {
                 "B1", "R1"
         );
 
-        ClassRecord b = record(
+        ClassRecord b = createRecord(
                 "COMP", "B", "In person", "City", 1, 1,
                 "Lecture", 1,
                 LocalDate.of(2026, 1, 1),
@@ -80,6 +82,7 @@ class ScheduleServiceTest {
                 "B1", "R2"
         );
 
+        // Run warning detection (no lecture overlap allowed in this test)
         List<ScheduleWarning> warnings = service.findWarnings(List.of(a, b), false);
 
         assertEquals(1, warnings.size());
@@ -89,11 +92,12 @@ class ScheduleServiceTest {
     @Test
     @Tag("Henry")
     @DisplayName("SS16.02 - different days no warning")
-    void ss2_different_days() {
+    void differentDaysNoWarning() {
 
         ScheduleService service = new ScheduleService();
 
-        ClassRecord a = record(
+        // Same time but different days should not trigger warnings
+        ClassRecord a = createRecord(
                 "COMP", "A", "In person", "City", 1, 1,
                 "Lecture", 1,
                 LocalDate.of(2026, 1, 1),
@@ -104,7 +108,7 @@ class ScheduleServiceTest {
                 "B1", "R1"
         );
 
-        ClassRecord b = record(
+        ClassRecord b = createRecord(
                 "COMP", "B", "In person", "City", 1, 1,
                 "Lecture", 1,
                 LocalDate.of(2026, 1, 1),
@@ -123,11 +127,12 @@ class ScheduleServiceTest {
     @Test
     @Tag("Henry")
     @DisplayName("SS16.03 - COMMUTE_GAP detected")
-    void ss3_commute_gap() {
+    void commuteGapDetected() {
 
         ScheduleService service = new ScheduleService();
 
-        ClassRecord a = record(
+        // Classes on same day but different campuses with tight gap
+        ClassRecord a = createRecord(
                 "COMP", "A", "In person", "City", 1, 1,
                 "Tutorial", 1,
                 LocalDate.of(2026, 1, 1),
@@ -138,7 +143,7 @@ class ScheduleServiceTest {
                 "B1", "R1"
         );
 
-        ClassRecord b = record(
+        ClassRecord b = createRecord(
                 "COMP", "B", "In person", "Tonsley", 1, 1,
                 "Tutorial", 1,
                 LocalDate.of(2026, 1, 1),
@@ -158,11 +163,12 @@ class ScheduleServiceTest {
     @Test
     @Tag("Henry")
     @DisplayName("SS16.04 - same campus no commute warning")
-    void ss4_same_campus() {
+    void sameCampusNoCommuteWarning() {
 
         ScheduleService service = new ScheduleService();
 
-        ClassRecord a = record(
+        // Same campus removes commute penalty even with short gap
+        ClassRecord a = createRecord(
                 "COMP", "A", "In person", "City", 1, 1,
                 "Tutorial", 1,
                 LocalDate.of(2026, 1, 1),
@@ -173,7 +179,7 @@ class ScheduleServiceTest {
                 "B1", "R1"
         );
 
-        ClassRecord b = record(
+        ClassRecord b = createRecord(
                 "COMP", "B", "In person", "City", 1, 1,
                 "Tutorial", 1,
                 LocalDate.of(2026, 1, 1),
@@ -192,11 +198,12 @@ class ScheduleServiceTest {
     @Test
     @Tag("Henry")
     @DisplayName("SS16.05 - allow lecture overlap disables warning")
-    void ss5_allow_lecture_overlap() {
+    void allowLectureOverlapDisablesWarning() {
 
         ScheduleService service = new ScheduleService();
 
-        ClassRecord a = record(
+        // Overlapping lectures should be ignored when flag is enabled
+        ClassRecord a = createRecord(
                 "COMP", "A", "In person", "City", 1, 1,
                 "Lecture", 1,
                 LocalDate.of(2026, 1, 1),
@@ -207,7 +214,7 @@ class ScheduleServiceTest {
                 "B1", "R1"
         );
 
-        ClassRecord b = record(
+        ClassRecord b = createRecord(
                 "COMP", "B", "In person", "City", 1, 1,
                 "Lecture", 1,
                 LocalDate.of(2026, 1, 1),
@@ -226,11 +233,12 @@ class ScheduleServiceTest {
     @Test
     @Tag("Henry")
     @DisplayName("SS16.06 - large gap no warning")
-    void ss6_large_gap() {
+    void largeGapNoWarning() {
 
         ScheduleService service = new ScheduleService();
 
-        ClassRecord a = record(
+        // Large time gap should not trigger commute warning
+        ClassRecord a = createRecord(
                 "COMP", "A", "In person", "City", 1, 1,
                 "Tutorial", 1,
                 LocalDate.of(2026, 1, 1),
@@ -241,7 +249,7 @@ class ScheduleServiceTest {
                 "B1", "R1"
         );
 
-        ClassRecord b = record(
+        ClassRecord b = createRecord(
                 "COMP", "B", "In person", "Tonsley", 1, 1,
                 "Tutorial", 1,
                 LocalDate.of(2026, 1, 1),

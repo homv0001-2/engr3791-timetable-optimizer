@@ -18,7 +18,8 @@ class PreferenceScorerTest {
 
     private final PreferenceScorer scorer = new PreferenceScorer();
 
-    private ClassRecord record(String campus, DayOfWeek day, LocalTime start) {
+    // Helper to create a ClassRecord with given campus, day, and start time
+    private ClassRecord createRecord(String campus, DayOfWeek day, LocalTime start) {
         return new ClassRecord(
                 "COMP1701",
                 "Game Design",
@@ -38,7 +39,8 @@ class PreferenceScorerTest {
         );
     }
 
-    private int score(PreferenceType pref, List<ClassRecord> records) {
+    // Helper to score a list of ClassRecords against a single preference
+    private int scorePreference(PreferenceType pref, List<ClassRecord> records) {
         TimetableSettings settings = new TimetableSettings();
         settings.setPreferences(List.of(pref));
         return scorer.score(records, settings, records);
@@ -48,45 +50,45 @@ class PreferenceScorerTest {
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.01 - Morning preference positive")
-    void ps801_morning() {
-        ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
-        assertTrue(score(PreferenceType.MORNINGS, List.of(r)) > 0);
+    void morningPreferencePositive() {
+        ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
+        assertTrue(scorePreference(PreferenceType.MORNINGS, List.of(r)) > 0);
     }
 
     @Test
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.02 - Afternoon preference positive")
-    void ps802_afternoon() {
-        ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(13, 0));
-        assertTrue(score(PreferenceType.AFTERNOONS, List.of(r)) > 0);
+    void afternoonPreferencePositive() {
+        ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(13, 0));
+        assertTrue(scorePreference(PreferenceType.AFTERNOONS, List.of(r)) > 0);
     }
 
     @Test
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.03 - Campus preference TONSLEY")
-    void ps803_tonsley() {
-        ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
-        assertTrue(score(PreferenceType.TONSLEY, List.of(r)) > 0);
+    void campusPreferenceTonsley() {
+        ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
+        assertTrue(scorePreference(PreferenceType.TONSLEY, List.of(r)) > 0);
     }
 
     @Test
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.04 - Campus preference BEDFORD_PARK mismatch")
-    void ps804_bedford_park_fail() {
-        ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
-        assertEquals(0, score(PreferenceType.BEDFORD_PARK, List.of(r)));
+    void campusPreferenceBedfordParkMismatch() {
+        ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
+        assertEquals(0, scorePreference(PreferenceType.BEDFORD_PARK, List.of(r)));
     }
 
     @Test
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.05 - SAME_CAMPUS true")
-    void ps805_same_campus_true() {
-        ClassRecord a = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
-        ClassRecord b = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(10, 0));
+    void sameCampusPreferenceTrue() {
+        ClassRecord a = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
+        ClassRecord b = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(10, 0));
 
         TimetableSettings settings = new TimetableSettings();
         settings.setPreferences(List.of(PreferenceType.SAME_CAMPUS));
@@ -100,54 +102,53 @@ class PreferenceScorerTest {
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.06 - MONDAY preference")
-    void ps806_monday() {
-        ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
-        assertTrue(score(PreferenceType.MONDAY, List.of(r)) > 0);
+    void mondayPreference() {
+        ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
+        assertTrue(scorePreference(PreferenceType.MONDAY, List.of(r)) > 0);
     }
 
     @Test
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.07 - TUESDAY mismatch")
-    void ps807_tuesday_fail() {
-        ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
-        assertEquals(0, score(PreferenceType.TUESDAY, List.of(r)));
+    void tuesdayPreferenceMismatch() {
+        ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
+        assertEquals(0, scorePreference(PreferenceType.TUESDAY, List.of(r)));
     }
 
     @Test
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.08 - EVENLY_SPREAD true")
-    void ps808_evenly_spread() {
+    void evenlySpreadPreference() {
         List<ClassRecord> records = List.of(
-                record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0)),
-                record("Tonsley", DayOfWeek.TUESDAY, LocalTime.of(9, 0)),
-                record("Tonsley", DayOfWeek.WEDNESDAY, LocalTime.of(9, 0))
+                createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0)),
+                createRecord("Tonsley", DayOfWeek.TUESDAY, LocalTime.of(9, 0)),
+                createRecord("Tonsley", DayOfWeek.WEDNESDAY, LocalTime.of(9, 0))
         );
 
-        assertTrue(score(PreferenceType.EVENLY_SPREAD, records) > 0);
+        assertTrue(scorePreference(PreferenceType.EVENLY_SPREAD, records) > 0);
     }
 
     @Test
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.09 - COMPACT_DAYS true")
-    void ps809_compact_days() {
+    void compactDaysPreference() {
         List<ClassRecord> records = List.of(
-                record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0)),
-                record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(11, 0))
+                createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0)),
+                createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(11, 0))
         );
 
-        assertTrue(score(PreferenceType.COMPACT_DAYS, records) > 0);
+        assertTrue(scorePreference(PreferenceType.COMPACT_DAYS, records) > 0);
     }
 
     @Test
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("PS15.10 - weight ordering affects score")
-    void ps810_weight_effect() {
-
-        ClassRecord r = record("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
+    void weightOrderingAffectsScore() {
+        ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
 
         TimetableSettings settings = new TimetableSettings();
         settings.setPreferences(List.of(

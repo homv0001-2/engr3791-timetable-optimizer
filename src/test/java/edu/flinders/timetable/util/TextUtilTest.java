@@ -15,8 +15,9 @@ class TextUtilTest {
     @Tag("Henry")
     @Tag("Core")
     @DisplayName("TX18.01 - isBlank detects null, empty and whitespace strings")
-    void tu101IsBlankBehaviour() {
+    void isBlankBehaviour() {
 
+        // verifies null, empty, whitespace, and normal text cases
         assertAll(
                 () -> assertTrue(TextUtil.isBlank(null)),
                 () -> assertTrue(TextUtil.isBlank("")),
@@ -29,8 +30,9 @@ class TextUtilTest {
     @Tag("Henry")
     @Tag("Core")
     @DisplayName("TX18.02 - clean trims whitespace and handles null")
-    void tu102CleanBehaviour() {
+    void cleanBehaviour() {
 
+        // verifies null handling and whitespace trimming
         assertAll(
                 () -> assertEquals("", TextUtil.clean(null)),
                 () -> assertEquals("text", TextUtil.clean("  text  ")),
@@ -42,8 +44,9 @@ class TextUtilTest {
     @Tag("Henry")
     @Tag("Core")
     @DisplayName("TX18.03 - containsIgnoreCase matches ignoring case and whitespace")
-    void tu103ContainsIgnoreCaseBehaviour() {
+    void containsIgnoreCaseBehaviour() {
 
+        // verifies case-insensitive matching and whitespace tolerance
         assertAll(
                 () -> assertTrue(TextUtil.containsIgnoreCase("Hello World", "hello")),
                 () -> assertTrue(TextUtil.containsIgnoreCase("Hello World", "WORLD")),
@@ -58,8 +61,9 @@ class TextUtilTest {
     @Tag("Henry")
     @Tag("Core")
     @DisplayName("TX18.04 - equalsIgnoreCase compares trimmed values correctly")
-    void tu104EqualsIgnoreCaseBehaviour() {
+    void equalsIgnoreCaseBehaviour() {
 
+        // verifies trimming, null handling, and case-insensitive equality
         assertAll(
                 () -> assertTrue(TextUtil.equalsIgnoreCase("Test", "test")),
                 () -> assertTrue(TextUtil.equalsIgnoreCase("  Test  ", "test")),
@@ -74,8 +78,9 @@ class TextUtilTest {
     @Tag("Henry")
     @Tag("Additional")
     @DisplayName("TX18.05 - firstNonBlank returns new value when valid otherwise old value")
-    void tu105FirstNonBlankBehaviour() {
+    void firstNonBlankBehaviour() {
 
+        // verifies fallback behaviour when first value is blank or null
         assertAll(
                 () -> assertEquals("new", TextUtil.firstNonBlank("new", "old")),
                 () -> assertEquals("old", TextUtil.firstNonBlank(null, "old")),

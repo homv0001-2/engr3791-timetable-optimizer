@@ -21,12 +21,14 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.01 - generate timetable delegates")
-    void tm101_generateTimetable() {
+    @DisplayName("TM3.01 - Verifies that generateTimetable correctly delegates to the TimetableService with the provided settings.")
+    void generateTimetable() {
 
+        // this creates timetable generation settings that will be passed to the service.
         TimetableSettings settings = new TimetableSettings();
 
-        // FAKE SERVICE (replace constructor args with whatever your project uses)
+        // this creates a test timetable service that verifies the same settings object
+        // is passed through by the manager.
         TimetableService service = new TimetableService(
                 null,
                 null
@@ -38,6 +40,7 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates a test export service that simply returns the output path.
         ExportService exportService = new ExportService(null) {
             @Override
             public Path exportTimetable(Timetable timetable, Path outputPath) {
@@ -45,18 +48,22 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates the timetable manager using the test services.
         TimetableManager manager = new TimetableManager(service, exportService);
 
+        // this verifies that the result returned from the service is passed back unchanged.
         assertNull(manager.generateTimetable(settings));
     }
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.02 - browse timetables")
-    void tm102_browseTimetables() {
+    @DisplayName("TM3.02 - Checks that browseTimetables returns the list of timetables from the service.")
+    void browseTimetables() {
 
+        // this creates a sample list of timetables that will be returned by the service.
         List<Timetable> list = List.of(new Timetable(null));
 
+        // this creates a test service that returns the sample timetable list.
         TimetableService service = new TimetableService(null, null) {
             @Override
             public List<Timetable> browseTimetables() {
@@ -64,6 +71,7 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates a simple export service for manager construction.
         ExportService exportService = new ExportService(null) {
             @Override
             public Path exportTimetable(Timetable timetable, Path outputPath) {
@@ -71,18 +79,22 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates the timetable manager.
         TimetableManager manager = new TimetableManager(service, exportService);
 
+        // this verifies that the manager returns the same list provided by the service.
         assertEquals(list, manager.browseTimetables());
     }
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.03 - view timetable optional")
-    void tm103_viewTimetable() {
+    @DisplayName("TM3.03 - Ensures that viewing a timetable by name returns an Optional containing the timetable if it exists.")
+    void viewTimetable() {
 
+        // this creates a sample timetable that will be returned by the service.
         Timetable t = new Timetable(null);
 
+        // this creates a test service that always returns the sample timetable.
         TimetableService service = new TimetableService(null, null) {
             @Override
             public Optional<Timetable> viewTimetable(String name) {
@@ -90,6 +102,7 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates a simple export service for manager construction.
         ExportService exportService = new ExportService(null) {
             @Override
             public Path exportTimetable(Timetable timetable, Path outputPath) {
@@ -97,24 +110,29 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates the timetable manager.
         TimetableManager manager = new TimetableManager(service, exportService);
 
+        // this verifies that a timetable was successfully returned.
         assertTrue(manager.viewTimetable("x").isPresent());
     }
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.04 - swap flow")
-    void tm104_swapFlow() {
+    @DisplayName("TM3.04 - Validates the prepare-and-apply swap workflow: prepareSwap returns the correct PendingSwapResult and applySwap uses the same result.")
+    void swapFlow() {
 
+        // this creates a sample swap result that will be returned by prepareSwap.
         PendingSwapResult swap = new PendingSwapResult(
-                true,          // canApply
-                false,         // requiresConfirmation
-                null,          // proposedTimetable
-                "",            // message
-                List.of()      // warnings
+                true,
+                false,
+                null,
+                "",
+                List.of()
         );
 
+        // this creates a test service that validates the swap parameters
+        // and ensures the same swap result is later applied.
         TimetableService service = new TimetableService(null, null) {
 
             @Override
@@ -131,6 +149,7 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates a simple export service for manager construction.
         ExportService exportService = new ExportService(null) {
             @Override
             public Path exportTimetable(Timetable timetable, Path outputPath) {
@@ -138,16 +157,19 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates the timetable manager.
         TimetableManager manager = new TimetableManager(service, exportService);
 
+        // this prepares a swap and immediately applies it.
         manager.applySwap(manager.prepareSwap("t1", "g1", "g2"));
     }
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.05 - delete timetable")
-    void tm105_deleteTimetable() {
+    @DisplayName("TM3.05 - Confirms that deleting a timetable returns true for existing timetables and false for non-existent ones.")
+    void deleteTimetable() {
 
+        // this creates a test service that only deletes a timetable named "test".
         TimetableService service = new TimetableService(null, null) {
             @Override
             public boolean deleteTimetable(String name) {
@@ -155,6 +177,7 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates a simple export service for manager construction.
         ExportService exportService = new ExportService(null) {
             @Override
             public Path exportTimetable(Timetable timetable, Path outputPath) {
@@ -162,22 +185,30 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates the timetable manager.
         TimetableManager manager = new TimetableManager(service, exportService);
 
+        // this verifies that an existing timetable can be deleted.
         assertTrue(manager.deleteTimetable("test"));
+
+        // this verifies that a non-existent timetable cannot be deleted.
         assertFalse(manager.deleteTimetable("nope"));
     }
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.06 - export timetable")
-    void tm106_exportTimetable() {
+    @DisplayName("TM3.06 - Checks that exportTimetable correctly delegates to ExportService and returns the expected output path.")
+    void exportTimetable() {
 
+        // this creates a sample output path and timetable for export.
         Path out = Paths.get("out.csv");
         Timetable timetable = new Timetable(null);
 
+        // this creates a basic timetable service for manager construction.
         TimetableService service = new TimetableService(null, null);
 
+        // this creates a test export service that verifies the timetable passed in
+        // and returns the expected output path.
         ExportService exportService = new ExportService(null) {
             @Override
             public Path exportTimetable(Timetable t, Path outputPath) {
@@ -186,8 +217,10 @@ class TimetableManagerTest {
             }
         };
 
+        // this creates the timetable manager.
         TimetableManager manager = new TimetableManager(service, exportService);
 
+        // this verifies that the exported path returned by the service is passed back.
         assertEquals(out, manager.exportTimetable(timetable, out));
     }
 }

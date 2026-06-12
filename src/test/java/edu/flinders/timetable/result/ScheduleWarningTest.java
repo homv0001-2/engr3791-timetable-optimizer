@@ -17,10 +17,12 @@ class ScheduleWarningTest {
     @Tag("Ryan")
     @Tag("Core")
     @DisplayName("SWA12.01 - Create TIME_CLASH warning and verify fields")
-    void tw101CreateTimeClashWarning() {
+    void timeClashWarning() {
+        // first and second class references for the warning
         ClassRecord first = null;
         ClassRecord second = null;
 
+        // create a TIME_CLASH warning
         ScheduleWarning warning = new ScheduleWarning(
                 ScheduleWarning.Type.TIME_CLASH,
                 first,
@@ -28,6 +30,7 @@ class ScheduleWarningTest {
                 "Classes overlap in time"
         );
 
+        // verify type, class references, and message
         assertAll(
                 () -> assertEquals(ScheduleWarning.Type.TIME_CLASH, warning.getType()),
                 () -> assertEquals(first, warning.getFirstClass()),
@@ -40,10 +43,12 @@ class ScheduleWarningTest {
     @Tag("Ryan")
     @Tag("Core")
     @DisplayName("SWA12.02 - Create COMMUTE_GAP warning and verify fields")
-    void tw102CreateCommuteGapWarning() {
+    void commuteGapWarning() {
+        // first and second class references for the warning
         ClassRecord first = null;
         ClassRecord second = null;
 
+        // create a COMMUTE_GAP warning
         ScheduleWarning warning = new ScheduleWarning(
                 ScheduleWarning.Type.COMMUTE_GAP,
                 first,
@@ -51,6 +56,7 @@ class ScheduleWarningTest {
                 "Not enough travel time between classes"
         );
 
+        // verify type, class references, and message
         assertAll(
                 () -> assertEquals(ScheduleWarning.Type.COMMUTE_GAP, warning.getType()),
                 () -> assertEquals(first, warning.getFirstClass()),
@@ -63,7 +69,8 @@ class ScheduleWarningTest {
     @Tag("Ryan")
     @Tag("Core")
     @DisplayName("SWA12.03 - toString formats type and message correctly")
-    void tw103ToStringFormat() {
+    void warningToStringFormatsCorrectly() {
+        // create a warning to test toString
         ScheduleWarning warning = new ScheduleWarning(
                 ScheduleWarning.Type.TIME_CLASH,
                 null,
@@ -71,6 +78,7 @@ class ScheduleWarningTest {
                 "Overlap detected"
         );
 
+        // verify the string representation
         assertEquals("TIME_CLASH: Overlap detected", warning.toString());
     }
 }

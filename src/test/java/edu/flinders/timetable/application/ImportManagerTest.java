@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ImportManagerTest {
 
     private ClassRecord record() {
+        // this helper creates a sample class record that can be returned by the parser.
         return new ClassRecord(
                 "COMP1701",
                 "Game Design",
@@ -41,11 +42,14 @@ class ImportManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("IM2.01 - importCsv processes records successfully")
-    void im101_importCsvProcessesRecordsSuccessfully() {
+    @DisplayName("IM2.01 - Verifies that importCsv correctly parses a CSV file and imports its records, returning a non-null ImportResult.")
+    void importCsvProcessesRecordsSuccessfully() {
 
+        // this creates a dummy path that will be passed to the parser.
         Path dummyPath = Paths.get("dummy.csv");
 
+        // this creates a test parser that verifies the correct path is received
+        // and returns one sample class record.
         CsvParser parser = new CsvParser() {
             @Override
             public List<ClassRecord> parse(Path path) {
@@ -54,6 +58,8 @@ class ImportManagerTest {
             }
         };
 
+        // this creates a test repository that verifies one record was received
+        // and returns a successful import result.
         DataRepository repository = new DataRepository() {
             @Override
             public ImportResult importRecords(List<ClassRecord> records) {
@@ -62,20 +68,25 @@ class ImportManagerTest {
             }
         };
 
+        // this creates the import manager using the test parser and repository.
         ImportManager manager = new ImportManager(parser, repository);
 
+        // this imports the CSV file through the manager.
         ImportResult result = manager.importCsv(dummyPath);
 
+        // this checks that a valid import result was returned.
         assertNotNull(result);
     }
 
     @Test
     @Tag("Thomas")
-    @DisplayName("IM2.02 - importCsv handles empty CSV results")
-    void im102_importCsvHandlesEmptyCsvResults() {
+    @DisplayName("IM2.02 - Ensures that importCsv handles a CSV with no records gracefully and still returns a non-null ImportResult.")
+    void importCsvHandlesEmptyCsvResults() {
 
+        // this creates a dummy path representing an empty CSV file.
         Path dummyPath = Paths.get("empty.csv");
 
+        // this creates a test parser that returns no records.
         CsvParser parser = new CsvParser() {
             @Override
             public List<ClassRecord> parse(Path path) {
@@ -84,6 +95,8 @@ class ImportManagerTest {
             }
         };
 
+        // this creates a repository that verifies it received an empty list
+        // and returns a successful import result.
         DataRepository repository = new DataRepository() {
             @Override
             public ImportResult importRecords(List<ClassRecord> records) {
@@ -92,18 +105,22 @@ class ImportManagerTest {
             }
         };
 
+        // this creates the import manager using the test dependencies.
         ImportManager manager = new ImportManager(parser, repository);
 
+        // this imports the empty CSV file.
         ImportResult result = manager.importCsv(dummyPath);
 
+        // this checks that a valid import result was still returned.
         assertNotNull(result);
     }
 
     @Test
     @Tag("Thomas")
-    @DisplayName("IM2.03 - constructor wiring smoke test")
-    void im103_constructorWorks() {
+    @DisplayName("IM2.03 - Confirms that the ImportManager constructor properly wires dependencies and that importCsv can be called without errors")
+    void constructorWorks() {
 
+        // this creates a parser that returns an empty list of records.
         CsvParser parser = new CsvParser() {
             @Override
             public List<ClassRecord> parse(Path path) {
@@ -111,6 +128,7 @@ class ImportManagerTest {
             }
         };
 
+        // this creates a repository that returns a successful import result.
         DataRepository repository = new DataRepository() {
             @Override
             public ImportResult importRecords(List<ClassRecord> records) {
@@ -118,8 +136,10 @@ class ImportManagerTest {
             }
         };
 
+        // this creates the import manager with the supplied dependencies.
         ImportManager manager = new ImportManager(parser, repository);
 
+        // this verifies that importCsv can be called successfully and returns a result.
         assertNotNull(manager.importCsv(Paths.get("test.csv")));
     }
 }

@@ -19,9 +19,9 @@ class ExportServiceTest {
     @Tag("Ryan")
     @Tag("Core")
     @DisplayName("ES14.01 - ExportService delegates exportTimetable correctly")
-    void es101DelegatesExportCorrectly() {
+    void delegatesExportTimetableCorrectly() {
 
-        // this stub captures calls made by ExportService
+        // Stub captures calls to FileExporter to verify delegation
         class StubExporter extends FileExporter {
             int callCount = 0;
             Timetable receivedTimetable;
@@ -47,8 +47,10 @@ class ExportServiceTest {
 
         ExportService service = new ExportService(exporter);
 
+        // Execute method under test
         Path result = service.exportTimetable(timetable, outputPath);
 
+        // Verify delegation and return value
         assertAll(
                 () -> assertEquals(expectedReturn, result),
                 () -> assertEquals(1, exporter.callCount),
@@ -61,8 +63,9 @@ class ExportServiceTest {
     @Tag("Ryan")
     @Tag("Additional")
     @DisplayName("ES14.02 - Parameters are passed through unchanged")
-    void es102ParametersPassedThrough() {
+    void passesParametersThroughUnchanged() {
 
+        // Stub to capture parameters passed to FileExporter
         class StubExporter extends FileExporter {
             int callCount = 0;
             Timetable receivedTimetable;
@@ -87,8 +90,10 @@ class ExportServiceTest {
 
         ExportService service = new ExportService(exporter);
 
+        // Execute method under test
         Path result = service.exportTimetable(timetable, outputPath);
 
+        // Verify parameters were passed through correctly
         assertAll(
                 () -> assertEquals(outputPath, result),
                 () -> assertEquals(1, exporter.callCount),
@@ -101,8 +106,9 @@ class ExportServiceTest {
     @Tag("Ryan")
     @Tag("Core")
     @DisplayName("ES14.03 - ExportService correctly uses injected FileExporter")
-    void es103ConstructorInjectionWorks() {
+    void constructorInjectionUsesExporter() {
 
+        // Stub only counts calls and returns a fixed path
         class StubExporter extends FileExporter {
             int callCount = 0;
             Path returnValue;
@@ -116,6 +122,7 @@ class ExportServiceTest {
 
         StubExporter exporter = new StubExporter();
 
+        // Inject stub via constructor
         ExportService service = new ExportService(exporter);
 
         Timetable timetable = new Timetable(null);
@@ -123,8 +130,10 @@ class ExportServiceTest {
 
         exporter.returnValue = path;
 
+        // Execute method under test
         Path result = service.exportTimetable(timetable, path);
 
+        // Verify the stub was used and call count incremented
         assertEquals(path, result);
         assertEquals(1, exporter.callCount);
     }
