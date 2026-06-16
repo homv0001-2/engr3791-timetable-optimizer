@@ -54,7 +54,7 @@ class ScheduleServiceTest {
 
     @Test
     @Tag("Henry")
-    @DisplayName("SS16.01 - TIME_CLASH detected")
+    @DisplayName("SS16.01 - Time clash detected.")
     void timeClashDetected() {
 
         ScheduleService service = new ScheduleService();
@@ -91,7 +91,7 @@ class ScheduleServiceTest {
 
     @Test
     @Tag("Henry")
-    @DisplayName("SS16.02 - different days no warning")
+    @DisplayName("SS16.02 - Different days safe.")
     void differentDaysNoWarning() {
 
         ScheduleService service = new ScheduleService();
@@ -126,7 +126,7 @@ class ScheduleServiceTest {
 
     @Test
     @Tag("Henry")
-    @DisplayName("SS16.03 - COMMUTE_GAP detected")
+    @DisplayName("SS16.03 - Commute gap detected.")
     void commuteGapDetected() {
 
         ScheduleService service = new ScheduleService();
@@ -162,7 +162,7 @@ class ScheduleServiceTest {
 
     @Test
     @Tag("Henry")
-    @DisplayName("SS16.04 - same campus no commute warning")
+    @DisplayName("SS16.04 - Same campus safe.")
     void sameCampusNoCommuteWarning() {
 
         ScheduleService service = new ScheduleService();
@@ -197,7 +197,7 @@ class ScheduleServiceTest {
 
     @Test
     @Tag("Henry")
-    @DisplayName("SS16.05 - allow lecture overlap disables warning")
+    @DisplayName("SS16.05 - Allow lecture overlap.")
     void allowLectureOverlapDisablesWarning() {
 
         ScheduleService service = new ScheduleService();
@@ -232,7 +232,7 @@ class ScheduleServiceTest {
 
     @Test
     @Tag("Henry")
-    @DisplayName("SS16.06 - large gap no warning")
+    @DisplayName("SS16.06 - Large gap safe.")
     void largeGapNoWarning() {
 
         ScheduleService service = new ScheduleService();

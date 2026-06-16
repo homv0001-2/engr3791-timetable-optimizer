@@ -21,7 +21,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.01 - Verifies that generateTimetable correctly delegates to the TimetableService with the provided settings.")
+    @DisplayName("TM3.01 - Generate timetable.")
     void generateTimetable() {
 
         // this creates timetable generation settings that will be passed to the service.
@@ -57,7 +57,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.02 - Checks that browseTimetables returns the list of timetables from the service.")
+    @DisplayName("TM3.02 - Browse timetables.")
     void browseTimetables() {
 
         // this creates a sample list of timetables that will be returned by the service.
@@ -88,7 +88,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.03 - Ensures that viewing a timetable by name returns an Optional containing the timetable if it exists.")
+    @DisplayName("TM3.03 - View timetable optional.")
     void viewTimetable() {
 
         // this creates a sample timetable that will be returned by the service.
@@ -119,7 +119,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.04 - Validates the prepare-and-apply swap workflow: prepareSwap returns the correct PendingSwapResult and applySwap uses the same result.")
+    @DisplayName("TM3.04 - Swap flow.")
     void swapFlow() {
 
         // this creates a sample swap result that will be returned by prepareSwap.
@@ -166,7 +166,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.05 - Confirms that deleting a timetable returns true for existing timetables and false for non-existent ones.")
+    @DisplayName("TM3.05 - Delete timetable.")
     void deleteTimetable() {
 
         // this creates a test service that only deletes a timetable named "test".
@@ -197,7 +197,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("TM3.06 - Checks that exportTimetable correctly delegates to ExportService and returns the expected output path.")
+    @DisplayName("TM3.06 - Export timetable.")
     void exportTimetable() {
 
         // this creates a sample output path and timetable for export.

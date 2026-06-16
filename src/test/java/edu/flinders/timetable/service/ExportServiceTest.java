@@ -18,7 +18,7 @@ class ExportServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("ES14.01 - ExportService delegates exportTimetable correctly")
+    @DisplayName("ES14.01 - Delegate export.")
     void delegatesExportTimetableCorrectly() {
 
         // Stub captures calls to FileExporter to verify delegation
@@ -62,7 +62,7 @@ class ExportServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("ES14.02 - Parameters are passed through unchanged")
+    @DisplayName("ES14.02 - Preserve parameters.")
     void passesParametersThroughUnchanged() {
 
         // Stub to capture parameters passed to FileExporter
@@ -105,7 +105,7 @@ class ExportServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("ES14.03 - ExportService correctly uses injected FileExporter")
+    @DisplayName("ES14.03 - Inject exporter used.")
     void constructorInjectionUsesExporter() {
 
         // Stub only counts calls and returns a fixed path

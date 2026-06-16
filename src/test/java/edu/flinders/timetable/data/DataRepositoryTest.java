@@ -56,7 +56,7 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Critical")
-    @DisplayName("DR5.01 - Verifies that importing a new class record increases the repository’s new record count and stores the record.")
+    @DisplayName("DR5.01 - Import new class.")
     void importNewClassRecordIncreasesNewCount() {
         // create a new class record to import
         ClassRecord newRecord = record("COMP1701", "Workshop", 1,
@@ -76,7 +76,7 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Critical")
-    @DisplayName("DR5.02 - Checks that importing a duplicate class record updates the existing record’s time and location without creating a new entry.")
+    @DisplayName("DR5.02 - Update duplicate.")
     void importDuplicateUpdatesTimeAndLocation() {
         // original record
         ClassRecord original = record("COMP1701", "Workshop", 1,
@@ -107,7 +107,7 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("DR5.03 - Ensures that a class record can be retrieved from the repository using its import key.")
+    @DisplayName("DR5.03 - Find by import key.")
     void findClassByImportKeyReturnsClass() {
         // import a class record
         ClassRecord classRecord = record("COMP1701", "Workshop", 1,
@@ -121,7 +121,7 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("DR5.04 - Confirms that an existing class record can be replaced with a new record using the same import key.")
+    @DisplayName("DR5.04 - Replace record.")
     void replaceExistingClassRecord() {
         // original record
         ClassRecord original = record("COMP1701", "Workshop", 1,
@@ -146,7 +146,7 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("DR5.05 - Validates that a class record can be deleted and the repository is updated accordingly.")
+    @DisplayName("DR5.05 - Delete existing record.")
     void deleteExistingClassRecord() {
         ClassRecord classRecord = record("COMP1701", "Workshop", 1,
                 LocalTime.of(9, 0), LocalTime.of(10, 0), "Tonsley T1", "1.08");
@@ -165,7 +165,7 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("DR5.06 - Verifies that attempting to delete a non-existent class record returns false and does not affect the repository.")
+    @DisplayName("DR5.06 - Delete missing record.")
     void deleteMissingClassRecordReturnsFalse() {
         // attempt deletion of a non-existent record
         boolean deleted = repository.deleteClass("missing-key");
@@ -177,7 +177,7 @@ class DataRepositoryTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("DR5.07 - Tests that timetables can be saved, found, listed, and deleted correctly in the repository.")
+    @DisplayName("DR5.07 - Save/view/delete/timetable.")
     void saveFindAndDeleteTimetable() {
         // create a timetable
         Timetable timetable = new Timetable("My Timetable");

@@ -33,7 +33,7 @@ class ClassManagerTest {
     @Test
     @Tag("Thomas")
     @Tag("Core")
-    @DisplayName("CM1.01 - Verifies that browsing classes retrieves a non-null list of class groups.")
+    @DisplayName("CM1.01 - Browse class groups.")
     void browseClass() {
         // Call method to retrieve all class groups
         List<ClassGroup> result = classManager.browseClasses();
@@ -45,7 +45,7 @@ class ClassManagerTest {
     @Test
     @Tag("Thomas")
     @Tag("Core")
-    @DisplayName("CM1.02 - Checks that viewing all classes returns a non-null list of class records.")
+    @DisplayName("CM1.02 - View class list.")
     void cm102ViewClass() {
         // Call method to view all individual class records
         List<ClassRecord> result = classManager.viewClasses();
@@ -57,7 +57,7 @@ class ClassManagerTest {
     @Test
     @Tag("Thomas")
     @Tag("Core")
-    @DisplayName("CM1.03 - Ensures that searching classes with a given criteria returns a non-null list.")
+    @DisplayName("CM1.03 - Search classes.")
     void searchClass() {
         // Create empty search criteria (could be extended with filters)
         SearchCriteria criteria = new SearchCriteria();
@@ -72,7 +72,7 @@ class ClassManagerTest {
     @Test
     @Tag("Thomas")
     @Tag("Core")
-    @DisplayName("CM1.04 - Confirms that attempting to find a class by key returns a non-null Optional object.")
+    @DisplayName("CM1.04 - Find class optional.")
     void findClass() {
         // Attempt to find a class using a key
         Optional<ClassRecord> result = classManager.findClass("KEY");
@@ -84,7 +84,7 @@ class ClassManagerTest {
     @Test
     @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("CM1.05 - Validates that editing a class does not throw exceptions and completes successfully.")
+    @DisplayName("CM1.05 - Edit class.")
     void editClass() {
         // Assert that editing a class with a given key does not throw any exceptions
         assertDoesNotThrow(() ->
@@ -95,7 +95,7 @@ class ClassManagerTest {
     @Test
     @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("CM1.06 - Checks that deleting a class by key executes without exceptions")
+    @DisplayName("CM1.06 - Delete class.")
     void deleteClass() {
         // Assert that deleting a class with a given key does not throw any exceptions
         assertDoesNotThrow(() ->

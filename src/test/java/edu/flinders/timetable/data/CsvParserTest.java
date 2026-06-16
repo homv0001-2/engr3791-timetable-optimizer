@@ -32,7 +32,7 @@ class CsvParserTest {
     @Test
     @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("CP4.01 - Verifies that a valid CSV file can be parsed successfully and produces the expected number of class records.")
+    @DisplayName("CP4.01 - Import CSV file.")
     void importClassesFromCsvFile() {
         // this creates a path to a sample CSV file for testing
         Path csvFile = Path.of("examples", "sample-topic-data.csv");
@@ -47,7 +47,7 @@ class CsvParserTest {
     @Test
     @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("CP4.02 - Ensures that location fields containing commas are parsed correctly into separate building and room values.")
+    @DisplayName("CP4.02 - Parse comma locations.")
     void parseLocationThatContainsAComma() {
         // this creates CSV lines with a header and one valid data row
         List<String> lines = List.of(HEADER, validRow());
@@ -68,7 +68,7 @@ class CsvParserTest {
     @Test
     @Tag("Thomas")
     @Tag("Core")
-    @DisplayName("CP4.03 - Validates that topic code, topic name, attendance mode, campus, semester, and availability number are correctly extracted from a CSV row.")
+    @DisplayName("CP4.03 - Parse topic availability.")
     void parseTopicAndAvailabilityFields() {
         // this creates CSV lines with a header and one valid data row
         List<String> lines = List.of(HEADER, validRow());
@@ -90,7 +90,7 @@ class CsvParserTest {
     @Test
     @Tag("Thomas")
     @Tag("Core")
-    @DisplayName("CP4.04 - Confirms that class dates, day of week, start time, and end time are parsed correctly from the CSV data.")
+    @DisplayName("CP4.04 - Pare date/time fields.")
     void parseDateDayAndTimeFields() {
         // this creates CSV lines with a header and one valid data row
         List<String> lines = List.of(HEADER, validRow());
@@ -111,7 +111,7 @@ class CsvParserTest {
     @Test
     @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("CP4.05 - Verifies that a CSV containing only a header row is rejected with a CsvFormatException.")
+    @DisplayName("CP4.05 - Reject empty CSV.")
     void rejectCsvWithoutADataRow() {
         // this creates CSV lines containing only the header
         List<String> lines = List.of(HEADER);
@@ -123,7 +123,7 @@ class CsvParserTest {
     @Test
     @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("TV4.06 - Ensures that a CSV with an invalid or unexpected header format is rejected with a CsvFormatException.")
+    @DisplayName("TV4.06 - Reject wrong header.")
     void rejectCsvWithWrongHeader() {
         // this creates a CSV header with the wrong format
         String wrongHeader = "Subject,Availability,Class,Class instance,Date,Day,Time,Location";
@@ -135,7 +135,7 @@ class CsvParserTest {
     @Test
     @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("CP4.07 - Verifies that class records with an instance number of zero are rejected as invalid.")
+    @DisplayName("CP4.07 - Reject zero instance.")
     void rejectClassInstanceZero() {
         // this creates a CSV row with a class instance of zero
         String row = "COMP1701 Game Design,In person - Tonsley - S2 - 1,Workshop,0,27 Jul - 14 Sep,Monday,09:00 - 10:00,Tonsley T1, 1.08 Lecture Room";
@@ -147,7 +147,7 @@ class CsvParserTest {
     @Test
     @Tag("Thomas")
     @Tag("Critical")
-    @DisplayName("CP4.08 - Ensures that class records with an invalid time range (start time after end time) are rejected.")
+    @DisplayName("CP4.08 - Reject invalid time.")
     void rejectTimeRangeWhereStartIsAfterEnd() {
         // this creates a CSV row with start time after end time
         String row = "COMP1701 Game Design,In person - Tonsley - S2 - 1,Workshop,1,27 Jul - 14 Sep,Monday,12:00 - 10:00,Tonsley T1, 1.08 Lecture Room";

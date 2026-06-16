@@ -50,7 +50,7 @@ class FileExporterTest {
     @Test
     @Tag("Jeff")
     @Tag("Core")
-    @DisplayName("FE6.01 - Verifies that exporting a timetable creates a CSV file containing the expected header row and class data.")
+    @DisplayName("FE6.01 - Export timetable CSV.")
     void exportTimetableCreatesCsvFile() throws Exception {
         // this creates a timetable with one class in it.
         Timetable timetable = new Timetable("Export Test", List.of(record("Festival Tower", "506 Computer Lab")));
@@ -76,7 +76,7 @@ class FileExporterTest {
     @Test
     @Tag("Jeff")
     @Tag("Additional")
-    @DisplayName("FE6.02 - Ensures that fields containing commas are correctly enclosed in quotation marks to produce a valid CSV format.")
+    @DisplayName("FE6.02 - Quote comma fields.")
     void exportQuotesFieldsThatContainCommas() throws Exception {
         // this creates a timetable where the building and room both contain commas.
         Timetable timetable = new Timetable("Export Test", List.of(record("Festival Tower, Level 5", "506, Computer Lab")));

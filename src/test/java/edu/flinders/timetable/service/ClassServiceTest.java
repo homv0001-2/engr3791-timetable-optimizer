@@ -71,7 +71,7 @@ class ClassServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("CS13.01 - browseClasses groups records")
+    @DisplayName("CS13.01 - Browse class groups.")
     void cs101() {
 
         List<ClassRecord> input = List.of(
@@ -89,7 +89,7 @@ class ClassServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("CS13.02 - viewClasses sorts correctly")
+    @DisplayName("CS13.02 - View sorted groups.")
     void cs102() {
 
         ClassRecord r1 = record("COMP2002", "City", 1, "Lecture", 2, LocalDate.of(2026, 1, 3));
@@ -105,7 +105,7 @@ class ClassServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("CS13.03 - searchClasses handles null criteria")
+    @DisplayName("CS13.03 - Null search criteria.")
     void cs103() {
 
         ClassRecord r1 = record("COMP1001", "City", 1, "Lecture", 1, LocalDate.of(2026, 1, 1));
@@ -120,7 +120,7 @@ class ClassServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("CS13.04 - searchClasses filters results")
+    @DisplayName("CS13.04 - Filter class search.")
     void cs104() {
 
         ClassRecord match = record("COMP1001", "City", 1, "Lecture", 1, LocalDate.of(2026, 1, 1));
@@ -143,7 +143,7 @@ class ClassServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("CS13.05 - findClassByKey returns value")
+    @DisplayName("CS13.05 - Find class key.")
     void cs105() {
 
         ClassRecord r1 = record("COMP1001", "City", 1, "Lecture", 1, LocalDate.of(2026, 1, 1));
@@ -161,7 +161,7 @@ class ClassServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("CS13.06 - editClass delegates")
+    @DisplayName("CS13.06 - Edit class delegates.")
     void cs106() {
 
         StubRepository repo = new StubRepository(List.of());
@@ -177,7 +177,7 @@ class ClassServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("CS13.07 - deleteClass delegates")
+    @DisplayName("CS13.07 - Delete class delegates.")
     void cs107() {
 
         StubRepository repo = new StubRepository(List.of());
@@ -193,7 +193,7 @@ class ClassServiceTest {
     @Test
     @Tag("Ryan")
     @Tag("Additional")
-    @DisplayName("CS13.08 - browseClasses handles multiple groups")
+    @DisplayName("CS13.08 - Multiple group browse.")
     void cs108() {
 
         List<ClassRecord> input = List.of(

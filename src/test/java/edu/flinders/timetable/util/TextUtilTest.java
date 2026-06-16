@@ -14,7 +14,7 @@ class TextUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TX18.01 - isBlank detects null, empty and whitespace strings")
+    @DisplayName("TX18.01 - Detect blank text.")
     void isBlankBehaviour() {
 
         // verifies null, empty, whitespace, and normal text cases
@@ -29,7 +29,7 @@ class TextUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TX18.02 - clean trims whitespace and handles null")
+    @DisplayName("TX18.02 - Clean whitespace.")
     void cleanBehaviour() {
 
         // verifies null handling and whitespace trimming
@@ -43,7 +43,7 @@ class TextUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TX18.03 - containsIgnoreCase matches ignoring case and whitespace")
+    @DisplayName("TX18.03 - Contains ignore case.")
     void containsIgnoreCaseBehaviour() {
 
         // verifies case-insensitive matching and whitespace tolerance
@@ -60,7 +60,7 @@ class TextUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TX18.04 - equalsIgnoreCase compares trimmed values correctly")
+    @DisplayName("TX18.04 - Equals ignore case.")
     void equalsIgnoreCaseBehaviour() {
 
         // verifies trimming, null handling, and case-insensitive equality
@@ -77,7 +77,7 @@ class TextUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Additional")
-    @DisplayName("TX18.05 - firstNonBlank returns new value when valid otherwise old value")
+    @DisplayName("TX18.05 - First non-blank.")
     void firstNonBlankBehaviour() {
 
         // verifies fallback behaviour when first value is blank or null

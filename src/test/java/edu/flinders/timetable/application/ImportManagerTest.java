@@ -42,7 +42,7 @@ class ImportManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("IM2.01 - Verifies that importCsv correctly parses a CSV file and imports its records, returning a non-null ImportResult.")
+    @DisplayName("IM2.01 - Import CSV success.")
     void importCsvProcessesRecordsSuccessfully() {
 
         // this creates a dummy path that will be passed to the parser.
@@ -80,7 +80,7 @@ class ImportManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("IM2.02 - Ensures that importCsv handles a CSV with no records gracefully and still returns a non-null ImportResult.")
+    @DisplayName("IM2.02 - Empty CSV import.")
     void importCsvHandlesEmptyCsvResults() {
 
         // this creates a dummy path representing an empty CSV file.
@@ -117,7 +117,7 @@ class ImportManagerTest {
 
     @Test
     @Tag("Thomas")
-    @DisplayName("IM2.03 - Confirms that the ImportManager constructor properly wires dependencies and that importCsv can be called without errors")
+    @DisplayName("IM2.03 - Constructor wiring.")
     void constructorWorks() {
 
         // this creates a parser that returns an empty list of records.

@@ -28,7 +28,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.01 - run basic menu flow safely")
+    @DisplayName("CU9.01 - Basic menu flow.")
     void basicFlow() {
 
         // ImportManager stub that simulates CSV parsing
@@ -108,7 +108,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.02 - invalid menu option is handled")
+    @DisplayName("CU9.02 - Invalid menu option.")
     void invalidMenuOption() {
 
         // simulate entering invalid option and then exit
@@ -119,7 +119,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.03 - CSV import failure path (exception handling)")
+    @DisplayName("CU9.03 - CSV import failure.")
     void importFailure() {
 
         // simulate CSV parsing throwing an exception
@@ -145,7 +145,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.04 - browse and view empty class list")
+    @DisplayName("CU9.04 - Empty class views.")
     void emptyClassViews() {
 
         // simulate browsing classes and viewing classes when none exist
@@ -156,7 +156,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.05 - browse empty timetables")
+    @DisplayName("CU9.05 - Empty timetables.")
     void emptyTimetables() {
 
         // simulate browsing timetables when none exist
@@ -167,7 +167,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.06 - view missing timetable")
+    @DisplayName("CU9.06 - Missing timetable view.")
     void viewMissingTimetable() {
 
         // simulate attempting to view a timetable that doesn't exist
@@ -178,7 +178,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.07 - export missing timetable")
+    @DisplayName("CU9.07 - Missing timetable export.")
     void exportMissingTimetable() {
 
         // simulate attempting to export a missing timetable
@@ -189,7 +189,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
-    @DisplayName("CU9.08 - delete timetable cancelled by user")
+    @DisplayName("CU9.08 - Delete cancelled.")
     void deleteCancelled() {
 
         // simulate user cancelling deletion of a timetable

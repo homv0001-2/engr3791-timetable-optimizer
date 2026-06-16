@@ -21,7 +21,7 @@ class ResultObjectsTest {
     @Test
     @Tag("Sunny")
     @Tag("Additional")
-    @DisplayName("RO11.01 - Import result records counts and errors")
+    @DisplayName("RO11.01 - Import result counts.")
     void importResultCountsAndErrors() {
         // this creates an empty import result object.
         ImportResult result = new ImportResult();
@@ -43,7 +43,7 @@ class ResultObjectsTest {
     @Test
     @Tag("Sunny")
     @Tag("Additional")
-    @DisplayName("RO11.02 - Timetable generation failure stores message")
+    @DisplayName("RO11.02 - Failure message.")
     void timetableGenerationFailureStoresMessage() {
         // this creates a failed timetable generation result.
         TimetableGenerationResult result = TimetableGenerationResult.failure("No matching classes");
@@ -59,7 +59,7 @@ class ResultObjectsTest {
     @Test
     @Tag("Sunny")
     @Tag("Additional")
-    @DisplayName("RO11.03 - Timetable generation success stores timetable")
+    @DisplayName("RO11.03 - Success object.")
     void timetableGenerationSuccessStoresTimetable() {
         // this creates a simple timetable.
         Timetable timetable = new Timetable("Success Test");

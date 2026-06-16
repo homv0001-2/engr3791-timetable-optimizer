@@ -67,7 +67,7 @@ class TimetableServiceTest {
     @Test
     @Tag("Henry")
     @Tag("Critical")
-    @DisplayName("TS17.01 - Null timetable settings are invalid")
+    @DisplayName("TS17.01 - Null settings invalid.")
     void nullTimetableSettingsAreInvalid() {
         // Validate null settings
         ValidationResult result = service.validateSettings(null);
@@ -79,7 +79,7 @@ class TimetableServiceTest {
     @Test
     @Tag("Henry")
     @Tag("Critical")
-    @DisplayName("TS17.02 - Empty topic selection is invalid")
+    @DisplayName("TS17.02 - Empty topic invalid.")
     void emptyTopicSelectionIsInvalid() {
         TimetableSettings settings = createSettings("Empty Topic Test");
 
@@ -96,7 +96,7 @@ class TimetableServiceTest {
     @Test
     @Tag("Henry")
     @Tag("Critical")
-    @DisplayName("TS17.03 - Invalid semester is rejected")
+    @DisplayName("TS17.03 - Invalid semester.")
     void invalidSemesterIsRejected() {
         TimetableSettings settings = createSettings("Bad Semester Test");
 
@@ -112,7 +112,7 @@ class TimetableServiceTest {
     @Test
     @Tag("Henry")
     @Tag("Critical")
-    @DisplayName("TS17.04 - Generate timetable saves valid timetable")
+    @DisplayName("TS17.04 - Generate and save.")
     void generateTimetableSavesValidTimetable() {
         // Add a class matching the timetable settings
         repository.importRecords(List.of(
@@ -134,7 +134,7 @@ class TimetableServiceTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TS17.05 - Blank timetable name is automatically generated")
+    @DisplayName("TS17.05 - Auto timetable name.")
     void blankTimetableNameIsAutomaticallyGenerated() {
         repository.importRecords(List.of(
                 createRecord("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))
@@ -153,7 +153,7 @@ class TimetableServiceTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TS17.06 - Duplicate timetable name is rejected")
+    @DisplayName("TS17.06 - Reject duplicate name.")
     void duplicateTimetableNameIsRejected() {
         repository.importRecords(List.of(
                 createRecord("COMP1701", "Workshop", 1, "Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0), LocalTime.of(10, 0))
@@ -172,7 +172,7 @@ class TimetableServiceTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TS17.07 - Generate timetable fails when no classes match")
+    @DisplayName("TS17.07 - No matching classes fail.")
     void generateTimetableFailsWhenNoClassesMatch() {
         // Import a class for a different topic
         repository.importRecords(List.of(

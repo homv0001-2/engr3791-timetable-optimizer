@@ -16,7 +16,7 @@ class TimeUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU19.01 - overlaps detects overlapping time ranges correctly")
+    @DisplayName("TU19.01 - Detect overlaps.")
     void overlapsBehaviour() {
 
         // define a time range from 9:00 to 10:00
@@ -42,7 +42,7 @@ class TimeUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU19.02 - overlaps returns false when times just touch but do not overlap")
+    @DisplayName("TU19.02 - Touching times safe.")
     void overlapsBoundaryBehaviour() {
 
         // define a range from 9:00 to 10:00
@@ -60,7 +60,7 @@ class TimeUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Core")
-    @DisplayName("TU19.03 - minutesBetween calculates correct duration difference")
+    @DisplayName("TU19.03 - Minutes between.")
     void minutesBetweenBehaviour() {
 
         // example ranges to calculate positive minute differences
@@ -80,7 +80,7 @@ class TimeUtilTest {
     @Test
     @Tag("Henry")
     @Tag("Additional")
-    @DisplayName("TU19.04 - minutesBetween supports negative durations")
+    @DisplayName("TU19.04 - Negative duration.")
     void minutesBetweenNegativeBehaviour() {
 
         // example where first time is after the second time

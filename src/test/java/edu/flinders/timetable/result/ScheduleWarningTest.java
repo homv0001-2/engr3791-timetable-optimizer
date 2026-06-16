@@ -16,7 +16,7 @@ class ScheduleWarningTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("SWA12.01 - Create TIME_CLASH warning and verify fields")
+    @DisplayName("SWA12.01 - Time clash warning.")
     void timeClashWarning() {
         // first and second class references for the warning
         ClassRecord first = null;
@@ -42,7 +42,7 @@ class ScheduleWarningTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("SWA12.02 - Create COMMUTE_GAP warning and verify fields")
+    @DisplayName("SWA12.02 - Commute gap warning.")
     void commuteGapWarning() {
         // first and second class references for the warning
         ClassRecord first = null;
@@ -68,7 +68,7 @@ class ScheduleWarningTest {
     @Test
     @Tag("Ryan")
     @Tag("Core")
-    @DisplayName("SWA12.03 - toString formats type and message correctly")
+    @DisplayName("SWA12.03 - Warning toString.")
     void warningToStringFormatsCorrectly() {
         // create a warning to test toString
         ScheduleWarning warning = new ScheduleWarning(
