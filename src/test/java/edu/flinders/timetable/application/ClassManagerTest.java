@@ -32,7 +32,7 @@ class ClassManagerTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("CM1.01 - Browse class groups.")
     void browseClass() {
         // Call method to retrieve all class groups
@@ -44,7 +44,7 @@ class ClassManagerTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("CM1.02 - View class list.")
     void cm102ViewClass() {
         // Call method to view all individual class records
@@ -56,7 +56,7 @@ class ClassManagerTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("CM1.03 - Search classes.")
     void searchClass() {
         // Create empty search criteria (could be extended with filters)
@@ -71,7 +71,7 @@ class ClassManagerTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("CM1.04 - Find class optional.")
     void findClass() {
         // Attempt to find a class using a key

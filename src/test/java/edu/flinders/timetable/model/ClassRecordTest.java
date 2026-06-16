@@ -42,7 +42,7 @@ class ClassRecordTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("CR7.01 - Import ket stable.")
     void importKeyIgnoresTimeAndLocation() {
         // this is the first record with the original time and location.
@@ -57,7 +57,7 @@ class ClassRecordTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("CR7.02 - Group key stable.")
     void groupKeyIgnoresDateDayTimeAndLocation() {
         // this is the first class record in a group.
@@ -75,7 +75,7 @@ class ClassRecordTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("CR7.03 - Copy separates record.")
     void copyCreatesSeparateClassRecord() {
         // this creates the original class record.
@@ -97,7 +97,7 @@ class ClassRecordTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Additional")
+    @Tag("Critical")
     @DisplayName("CR7.04 - Detect lecture.")
     void lectureClassIsDetected() {
         // this creates a class with "Lecture" in the class format.
@@ -109,7 +109,7 @@ class ClassRecordTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Additional")
+    @Tag("Critical")
     @DisplayName("CR7.05 - Display line details.")
     void displayLineContainsImportantClassDetails() {
         // this creates a normal class record.
@@ -129,7 +129,7 @@ class ClassRecordTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Additional")
+    @Tag("Critical")
     @DisplayName("CR7.06 - Get/set/toString.")
     void remainingCoverage() {
 

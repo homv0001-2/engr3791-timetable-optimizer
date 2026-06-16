@@ -28,6 +28,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("CU9.01 - Basic menu flow.")
     void basicFlow() {
 
@@ -108,6 +109,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("CU9.02 - Invalid menu option.")
     void invalidMenuOption() {
 
@@ -119,6 +121,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("CU9.03 - CSV import failure.")
     void importFailure() {
 
@@ -145,6 +148,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("CU9.04 - Empty class views.")
     void emptyClassViews() {
 
@@ -156,6 +160,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("CU9.05 - Empty timetables.")
     void emptyTimetables() {
 
@@ -167,6 +172,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("CU9.06 - Missing timetable view.")
     void viewMissingTimetable() {
 
@@ -178,6 +184,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("CU9.07 - Missing timetable export.")
     void exportMissingTimetable() {
 
@@ -189,6 +196,7 @@ class ConsoleUITest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("CU9.08 - Delete cancelled.")
     void deleteCancelled() {
 

@@ -55,7 +55,7 @@ class DataRepositoryTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("DR5.01 - Import new class.")
     void importNewClassRecordIncreasesNewCount() {
         // create a new class record to import
@@ -75,7 +75,7 @@ class DataRepositoryTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("DR5.02 - Update duplicate.")
     void importDuplicateUpdatesTimeAndLocation() {
         // original record
@@ -164,7 +164,7 @@ class DataRepositoryTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("DR5.06 - Delete missing record.")
     void deleteMissingClassRecordReturnsFalse() {
         // attempt deletion of a non-existent record

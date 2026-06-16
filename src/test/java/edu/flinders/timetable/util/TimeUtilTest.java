@@ -15,7 +15,7 @@ class TimeUtilTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Core")
+    @Tag("Additional")
     @DisplayName("TU19.01 - Detect overlaps.")
     void overlapsBehaviour() {
 
@@ -41,7 +41,7 @@ class TimeUtilTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Core")
+    @Tag("Additional")
     @DisplayName("TU19.02 - Touching times safe.")
     void overlapsBoundaryBehaviour() {
 

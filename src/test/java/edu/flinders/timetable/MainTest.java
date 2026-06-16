@@ -12,7 +12,7 @@ class MainTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Core")
+        @Tag("Critical")
     @DisplayName("MA20.01 - Test main method.")
     void mainDoesNotHang() {
 

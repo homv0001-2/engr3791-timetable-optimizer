@@ -19,6 +19,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.01 - Trim input line.")
     void readLineTrim() {
         // this simulates a user entering text with leading and trailing spaces.
@@ -30,6 +31,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.02 - Read valid integer.")
     void readIntValid() {
         // this simulates a user entering a valid integer.
@@ -41,6 +43,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.03 - Blank integer default.")
     void readIntBlank() {
         // this simulates a user pressing enter without entering a value.
@@ -52,6 +55,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.04 - Invalid integer default.")
     void readIntInvalid() {
         // this simulates a user entering a non-numeric value.
@@ -63,6 +67,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.05 - Confirm yes.")
     void confirmYes() {
         // this simulates a user entering a short confirmation response.
@@ -74,6 +79,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.06 - Confirm yes word.")
     void confirmYesFull() {
         // this simulates a user entering the full confirmation word.
@@ -85,6 +91,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.07 - Reject no.")
     void confirmNo() {
         // this simulates a user rejecting confirmation.
@@ -96,6 +103,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.08 - Reject blank.")
     void confirmBlank() {
         // this simulates a user providing no confirmation input.
@@ -107,6 +115,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.09 - Parse CSV values.")
     void csvValues() {
         // this simulates comma-separated input with spaces and empty entries.
@@ -125,6 +134,7 @@ class InputHandlerTest {
 
     @Test
     @Tag("Sunny")
+    @Tag("Additional")
     @DisplayName("IH10.10 - Blank CSV is empty.")
     void csvBlank() {
         // this simulates a user entering no CSV values.

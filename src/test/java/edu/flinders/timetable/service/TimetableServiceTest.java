@@ -66,7 +66,7 @@ class TimetableServiceTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("TS17.01 - Null settings invalid.")
     void nullTimetableSettingsAreInvalid() {
         // Validate null settings
@@ -78,7 +78,7 @@ class TimetableServiceTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("TS17.02 - Empty topic invalid.")
     void emptyTopicSelectionIsInvalid() {
         TimetableSettings settings = createSettings("Empty Topic Test");
@@ -95,7 +95,7 @@ class TimetableServiceTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("TS17.03 - Invalid semester.")
     void invalidSemesterIsRejected() {
         TimetableSettings settings = createSettings("Bad Semester Test");
@@ -111,7 +111,7 @@ class TimetableServiceTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("TS17.04 - Generate and save.")
     void generateTimetableSavesValidTimetable() {
         // Add a class matching the timetable settings

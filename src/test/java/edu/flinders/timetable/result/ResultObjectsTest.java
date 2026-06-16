@@ -20,7 +20,7 @@ class ResultObjectsTest {
 
     @Test
     @Tag("Sunny")
-    @Tag("Additional")
+    @Tag("Critical")
     @DisplayName("RO11.01 - Import result counts.")
     void importResultCountsAndErrors() {
         // this creates an empty import result object.
@@ -42,7 +42,7 @@ class ResultObjectsTest {
 
     @Test
     @Tag("Sunny")
-    @Tag("Additional")
+    @Tag("Critical")
     @DisplayName("RO11.02 - Failure message.")
     void timetableGenerationFailureStoresMessage() {
         // this creates a failed timetable generation result.
@@ -58,7 +58,7 @@ class ResultObjectsTest {
 
     @Test
     @Tag("Sunny")
-    @Tag("Additional")
+    @Tag("Critical")
     @DisplayName("RO11.03 - Success object.")
     void timetableGenerationSuccessStoresTimetable() {
         // this creates a simple timetable.

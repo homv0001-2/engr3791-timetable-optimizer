@@ -61,7 +61,7 @@ class ExportServiceTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("ES14.02 - Preserve parameters.")
     void passesParametersThroughUnchanged() {
 

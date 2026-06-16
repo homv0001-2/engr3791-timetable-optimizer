@@ -39,7 +39,7 @@ class SearchCriteriaTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("SC8.01 - Empty criteria match.")
     void emptySearchCriteriaMatchesClass() {
         // this creates empty search criteria, meaning the user has not filtered by anything.
@@ -51,7 +51,7 @@ class SearchCriteriaTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("SC8.02 - Topic search ignores case.")
     void topicCodeSearchIsCaseInsensitive() {
         // this creates search criteria with the topic code in lowercase.
@@ -64,7 +64,7 @@ class SearchCriteriaTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("SC8.03 - AND criteria.")
     void multipleSearchCriteriaUseAndLogic() {
         // this creates criteria where all fields should match the record.
@@ -79,7 +79,7 @@ class SearchCriteriaTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("SC8.04 - Reject wrong semester.")
     void searchCriteriaRejectsMismatchedSemester() {
         // this creates criteria where the topic code matches but the semester does not.
@@ -93,7 +93,7 @@ class SearchCriteriaTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Additional")
+    @Tag("Critical")
     @DisplayName("SC8.05 - Match all fields.")
     void allSearchFieldsCanMatch() {
 
@@ -120,7 +120,7 @@ class SearchCriteriaTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Additional")
+    @Tag("Critical")
     @DisplayName("SC8.06 - Getters and setters.")
     void gettersAndSettersWork() {
 

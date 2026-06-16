@@ -192,7 +192,7 @@ class ClassServiceTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("CS13.08 - Multiple group browse.")
     void cs108() {
 

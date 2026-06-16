@@ -75,7 +75,7 @@ class FileExporterTest {
 
     @Test
     @Tag("Jeff")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("FE6.02 - Quote comma fields.")
     void exportQuotesFieldsThatContainCommas() throws Exception {
         // this creates a timetable where the building and room both contain commas.

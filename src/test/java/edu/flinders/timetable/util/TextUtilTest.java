@@ -13,7 +13,7 @@ class TextUtilTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Core")
+    @Tag("Additional")
     @DisplayName("TX18.01 - Detect blank text.")
     void isBlankBehaviour() {
 
@@ -28,7 +28,7 @@ class TextUtilTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Core")
+    @Tag("Additional")
     @DisplayName("TX18.02 - Clean whitespace.")
     void cleanBehaviour() {
 
@@ -42,7 +42,7 @@ class TextUtilTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Core")
+    @Tag("Additional")
     @DisplayName("TX18.03 - Contains ignore case.")
     void containsIgnoreCaseBehaviour() {
 
@@ -59,7 +59,7 @@ class TextUtilTest {
 
     @Test
     @Tag("Henry")
-    @Tag("Core")
+    @Tag("Additional")
     @DisplayName("TX18.04 - Equals ignore case.")
     void equalsIgnoreCaseBehaviour() {
 

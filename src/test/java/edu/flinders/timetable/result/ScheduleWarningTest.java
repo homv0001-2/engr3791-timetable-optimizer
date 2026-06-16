@@ -15,7 +15,7 @@ class ScheduleWarningTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("SWA12.01 - Time clash warning.")
     void timeClashWarning() {
         // first and second class references for the warning
@@ -41,7 +41,7 @@ class ScheduleWarningTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("SWA12.02 - Commute gap warning.")
     void commuteGapWarning() {
         // first and second class references for the warning
@@ -67,7 +67,7 @@ class ScheduleWarningTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Core")
+    @Tag("Critical")
     @DisplayName("SWA12.03 - Warning toString.")
     void warningToStringFormatsCorrectly() {
         // create a warning to test toString

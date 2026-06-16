@@ -21,6 +21,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("TM3.01 - Generate timetable.")
     void generateTimetable() {
 
@@ -57,6 +58,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("TM3.02 - Browse timetables.")
     void browseTimetables() {
 
@@ -88,6 +90,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("TM3.03 - View timetable optional.")
     void viewTimetable() {
 
@@ -119,6 +122,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("TM3.04 - Swap flow.")
     void swapFlow() {
 
@@ -166,6 +170,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("TM3.05 - Delete timetable.")
     void deleteTimetable() {
 
@@ -197,6 +202,7 @@ class TimetableManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("TM3.06 - Export timetable.")
     void exportTimetable() {
 

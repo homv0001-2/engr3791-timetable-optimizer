@@ -31,7 +31,7 @@ class CsvParserTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("CP4.01 - Import CSV file.")
     void importClassesFromCsvFile() {
         // this creates a path to a sample CSV file for testing
@@ -46,7 +46,7 @@ class CsvParserTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("CP4.02 - Parse comma locations.")
     void parseLocationThatContainsAComma() {
         // this creates CSV lines with a header and one valid data row
@@ -110,7 +110,7 @@ class CsvParserTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("CP4.05 - Reject empty CSV.")
     void rejectCsvWithoutADataRow() {
         // this creates CSV lines containing only the header
@@ -122,7 +122,7 @@ class CsvParserTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("TV4.06 - Reject wrong header.")
     void rejectCsvWithWrongHeader() {
         // this creates a CSV header with the wrong format
@@ -134,7 +134,7 @@ class CsvParserTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("CP4.07 - Reject zero instance.")
     void rejectClassInstanceZero() {
         // this creates a CSV row with a class instance of zero
@@ -146,7 +146,7 @@ class CsvParserTest {
 
     @Test
     @Tag("Thomas")
-    @Tag("Critical")
+    @Tag("Core")
     @DisplayName("CP4.08 - Reject invalid time.")
     void rejectTimeRangeWhereStartIsAfterEnd() {
         // this creates a CSV row with start time after end time

@@ -48,7 +48,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.01 - Morning preference.")
     void morningPreferencePositive() {
         ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
@@ -57,7 +57,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.02 - Afternoon preference.")
     void afternoonPreferencePositive() {
         ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(13, 0));
@@ -66,7 +66,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.03 - Tonsley score.")
     void campusPreferenceTonsley() {
         ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
@@ -75,7 +75,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.04 - Bedford mismatch.")
     void campusPreferenceBedfordParkMismatch() {
         ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
@@ -84,7 +84,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.05 - Same campus preference.")
     void sameCampusPreferenceTrue() {
         ClassRecord a = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
@@ -100,7 +100,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.06 - Monday preference.")
     void mondayPreference() {
         ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
@@ -109,7 +109,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.07 - Tuesday mismatch.")
     void tuesdayPreferenceMismatch() {
         ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));
@@ -118,7 +118,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.08 - Evenly spread preference.")
     void evenlySpreadPreference() {
         List<ClassRecord> records = List.of(
@@ -132,7 +132,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.09 - Compact days preference.")
     void compactDaysPreference() {
         List<ClassRecord> records = List.of(
@@ -145,7 +145,7 @@ class PreferenceScorerTest {
 
     @Test
     @Tag("Ryan")
-    @Tag("Additional")
+    @Tag("Core")
     @DisplayName("PS15.10 - Weight ordering.")
     void weightOrderingAffectsScore() {
         ClassRecord r = createRecord("Tonsley", DayOfWeek.MONDAY, LocalTime.of(9, 0));

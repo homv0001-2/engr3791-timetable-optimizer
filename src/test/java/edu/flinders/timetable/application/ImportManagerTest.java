@@ -42,6 +42,7 @@ class ImportManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("IM2.01 - Import CSV success.")
     void importCsvProcessesRecordsSuccessfully() {
 
@@ -80,6 +81,7 @@ class ImportManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("IM2.02 - Empty CSV import.")
     void importCsvHandlesEmptyCsvResults() {
 
@@ -117,6 +119,7 @@ class ImportManagerTest {
 
     @Test
     @Tag("Thomas")
+    @Tag("Critical")
     @DisplayName("IM2.03 - Constructor wiring.")
     void constructorWorks() {
 
